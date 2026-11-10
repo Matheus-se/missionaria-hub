@@ -190,7 +190,7 @@ const etapas = lista(principais, 'ol').map(tituloETexto);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: var(--s-8) var(--s-6) 0;
+    padding: var(--s-6) var(--s-6) 0;
     border-bottom: 0;
     border-left: 0;
     border-right: 1px solid var(--ink);
@@ -221,6 +221,17 @@ const etapas = lista(principais, 'ol').map(tituloETexto);
 
   :global(.tem-movimento) .horizontal .etapa-texto {
     max-width: 30em;
+  }
+
+  @media (max-height: 800px) {
+    :global(.tem-movimento) .horizontal .etapa {
+      width: min(44vw, 680px);
+      padding: var(--s-5) var(--s-5) 0;
+    }
+
+    :global(.tem-movimento) .horizontal .etapa-numero {
+      font-size: 1.5em;
+    }
   }
 
   @media (max-width: 860px) {
