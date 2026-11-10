@@ -1,0 +1,242 @@
+---
+import SimboloEtapa from './SimboloEtapa.astro';
+import { lista, paragrafos, secao, tituloETexto } from '../lib/conteudo';
+
+const titulo = 'Como um aplicativo é feito';
+const blocos = secao(titulo).blocos;
+const corte = blocos.findIndex((b) => b.tipo === 'h3');
+const principais = corte === -1 ? blocos : blocos.slice(0, corte);
+const intro = paragrafos(principais).map((linhas) => linhas.join(' '));
+const etapas = lista(principais, 'ol').map(tituloETexto);
+---
+
+<section class="secao processo" id="como-funciona" aria-labelledby="processo-titulo">
+  <header class="grade processo-topo">
+    <h2 class="titulo-secao processo-titulo" id="processo-titulo">{titulo}</h2>
+    <div class="texto processo-intro">
+      {intro.map((p) => <p>{p}</p>)}
+    </div>
+  </header>
+
+  <div class="processo-palco" data-palco>
+    <div class="processo-obra" aria-hidden="true">
+      <SimboloEtapa etapa={0} class="processo-obra-simbolo" />
+      <p class="processo-legenda" data-legenda>Antes de começar</p>
+    </div>
+    <span class="processo-progresso" aria-hidden="true" data-progresso></span>
+
+    <div class="processo-janela" data-janela>
+      <ol class="processo-trilho" data-trilho>
+        {
+          etapas.map((etapa, i) => (
+            <li class="etapa" data-etapa={i + 1}>
+              <SimboloEtapa etapa={i + 1} class="etapa-simbolo" />
+              <h3 class="etapa-nome">
+                <span class="etapa-numero">{i + 1}</span>
+                <span class="etapa-palavra">{etapa.titulo}</span>
+              </h3>
+              <p class="etapa-texto">{etapa.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .processo-topo {
+    row-gap: var(--s-4);
+    align-items: end;
+  }
+
+  .processo-titulo {
+    grid-column: 1 / span 7;
+    align-self: start;
+  }
+
+  .processo-intro {
+    grid-column: 9 / span 4;
+    color: var(--ink-soft);
+  }
+
+  .processo-palco {
+    position: relative;
+    margin-top: var(--s-7);
+  }
+
+  .processo-obra,
+  .processo-progresso {
+    display: none;
+  }
+
+  .processo-trilho {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .etapa {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--s-3);
+    align-content: start;
+    padding: var(--s-4) var(--s-4) var(--s-6) 0;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .etapa:not(:nth-child(3n + 1)) {
+    padding-left: var(--s-4);
+    border-left: 1px solid var(--ink);
+  }
+
+  .etapa :global(.etapa-simbolo) {
+    grid-row: 1 / span 2;
+    width: clamp(44px, 4.4vw, 72px);
+    height: auto;
+    margin-top: 0.4em;
+  }
+
+  .etapa-numero {
+    margin-right: 0.28em;
+  }
+
+  .etapa-nome {
+    margin: 0.1em 0 0.45em;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--t-l);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .etapa-texto {
+    margin: 0;
+    font-size: var(--t-body);
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  /* Passagem horizontal: ativada pelo script de movimento em telas largas. */
+  :global(.tem-movimento) .processo-palco.horizontal {
+    display: grid;
+    grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+    align-items: center;
+    width: calc(100% + var(--m) * 2);
+    height: calc(100vh - 64px);
+    margin: var(--s-7) 0 0 calc(var(--m) * -1);
+    overflow: hidden;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+  }
+
+  :global(.tem-movimento) .horizontal .processo-progresso {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--ink);
+    transform-origin: 0 50%;
+    scale: 0 1;
+  }
+
+  :global(.tem-movimento) .horizontal .processo-legenda {
+    position: absolute;
+    left: var(--m);
+    bottom: clamp(28px, 3vw, 48px);
+    margin: 0;
+    font-family: var(--brand);
+    font-weight: 500;
+    font-size: var(--t-label);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  :global(.tem-movimento) .horizontal .processo-obra {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    border-right: 1px solid var(--ink);
+  }
+
+  :global(.tem-movimento) .horizontal :global(.processo-obra-simbolo) {
+    width: min(18vw, 40vh);
+    height: auto;
+  }
+
+  :global(.tem-movimento) .horizontal .processo-janela {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  :global(.tem-movimento) .horizontal .processo-trilho {
+    display: flex;
+    width: max-content;
+    height: 100%;
+    border-top: 0;
+  }
+
+  :global(.tem-movimento) .horizontal .etapa {
+    width: min(40vw, 640px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--s-8) var(--s-6) 0;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 1px solid var(--ink);
+  }
+
+  /* A janela ocupa 2/3 da passagem; a última etapa enche a janela para a passagem terminar numa página inteira. */
+  :global(.tem-movimento) .horizontal .etapa:last-child {
+    width: calc(100vw * 2 / 3);
+    border-right: 0;
+  }
+
+  :global(.tem-movimento) .horizontal .etapa :global(.etapa-simbolo) {
+    display: none;
+  }
+
+  :global(.tem-movimento) .horizontal .etapa-numero {
+    display: block;
+    margin: 0 0 0.12em;
+    font-size: 1.9em;
+    letter-spacing: -0.04em;
+    line-height: 0.8;
+  }
+
+  :global(.tem-movimento) .horizontal .etapa-nome {
+    font-size: var(--t-xl);
+    margin: 0 0 0.4em;
+  }
+
+  :global(.tem-movimento) .horizontal .etapa-texto {
+    max-width: 30em;
+  }
+
+  @media (max-width: 860px) {
+    .processo-titulo,
+    .processo-intro {
+      grid-column: 1 / -1;
+    }
+
+    .processo-trilho {
+      grid-template-columns: 1fr;
+    }
+
+    .etapa,
+    .etapa:not(:nth-child(3n + 1)) {
+      padding: var(--s-4) 0 var(--s-5);
+      border-left: 0;
+    }
+  }
+</style>

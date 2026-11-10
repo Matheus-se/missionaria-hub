@@ -1,0 +1,264 @@
+---
+import Simbolo from './Simbolo.astro';
+import { campos, preencher } from '../lib/conteudo';
+
+const abertura = campos('Abertura');
+const linhas = abertura['Título'].split('|').map((parte) => parte.trim());
+---
+
+<section class="abertura" aria-labelledby="abertura-titulo">
+  <header class="cabecalho">
+    <a class="marca" href="#topo" aria-label="Missionária HUB, voltar ao início">
+      <Simbolo class="marca-simbolo" />
+      <span class="marca-nome" aria-hidden="true">MISSIONÁRIA HUB</span>
+    </a>
+    <nav class="menu" aria-label="Seções da página">
+      <a href="#o-que-vimos">O que vimos</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#perguntas">Perguntas</a>
+      <a href="#parte-conversa">Conversa</a>
+    </nav>
+  </header>
+
+  <h1 class="titulo" id="abertura-titulo">
+    {linhas.map((linha) => <span class="linha"><span class="linha-texto">{linha} </span></span>)}
+  </h1>
+
+  <p class="apoio">{preencher(abertura['Apoio'])}</p>
+
+  <a class="cta" href="#perguntas">{abertura['Botão']}</a>
+
+  <Simbolo class="simbolo" />
+</section>
+
+<style>
+  .abertura {
+    position: relative;
+    height: calc(656 * var(--u));
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .cabecalho {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: calc(92 * var(--u));
+  }
+
+  .marca {
+    position: absolute;
+    left: calc(64 * var(--u));
+    top: calc(22 * var(--u));
+    display: block;
+    text-decoration: none;
+  }
+
+  .marca :global(.marca-simbolo) {
+    display: block;
+    height: calc(48 * var(--u));
+    width: auto;
+  }
+
+  .marca-nome {
+    position: absolute;
+    left: calc(53 * var(--u));
+    top: calc(20 * var(--u));
+    font-family: var(--brand);
+    font-weight: 700;
+    font-size: calc(19.5 * var(--u));
+    letter-spacing: 0.07em;
+    line-height: 1;
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .menu {
+    position: absolute;
+    left: calc(382 * var(--u));
+    top: calc(41 * var(--u));
+    display: flex;
+    gap: calc(35 * var(--u));
+  }
+
+  .menu a {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: calc(16.8 * var(--u));
+    letter-spacing: -0.035em;
+    line-height: 1;
+    text-decoration: none;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .titulo {
+    position: absolute;
+    left: calc(68.5 * var(--u));
+    top: calc(212 * var(--u));
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: calc(59.5 * var(--u));
+    line-height: calc(73.6 * var(--u));
+    letter-spacing: -0.012em;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .linha {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.22em;
+    margin-bottom: -0.22em;
+    white-space: nowrap;
+  }
+
+  .linha-texto {
+    display: inline-block;
+  }
+
+  :global(.entrada-pendente) .linha-texto,
+  :global(.entrada-pendente) .apoio,
+  :global(.entrada-pendente) .cta,
+  :global(.entrada-pendente) .abertura :global(.simbolo [data-peca]) {
+    opacity: 0;
+  }
+
+  .apoio {
+    position: absolute;
+    left: calc(69.5 * var(--u));
+    top: calc(450 * var(--u));
+    margin: 0;
+    font-family: var(--sans);
+    font-size: calc(23.1 * var(--u));
+    line-height: 1;
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  .cta {
+    position: absolute;
+    left: calc(69 * var(--u));
+    top: calc(509 * var(--u));
+    width: calc(254 * var(--u));
+    height: calc(62 * var(--u));
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: calc(20.9 * var(--u));
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      background-color 0.22s var(--ease-out),
+      color 0.22s var(--ease-out);
+  }
+
+  .cta:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .abertura :global(.simbolo) {
+    position: absolute;
+    left: calc(849.9 * var(--u));
+    top: calc(41.4 * var(--u));
+    width: calc(456.3 * var(--u));
+    height: auto;
+    color: var(--ink);
+  }
+
+  @media (max-width: 860px) {
+    .abertura {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      min-height: 100svh;
+      padding: 0 var(--m);
+    }
+
+    .cabecalho {
+      position: relative;
+      height: auto;
+      padding: var(--s-3) 0 0;
+    }
+
+    .marca {
+      position: static;
+      display: flex;
+      align-items: center;
+      gap: var(--s-2);
+    }
+
+    .marca :global(.marca-simbolo) {
+      height: 34px;
+    }
+
+    .marca-nome {
+      position: static;
+      font-size: 14px;
+      letter-spacing: 0.07em;
+    }
+
+    .menu {
+      display: none;
+    }
+
+    .titulo {
+      position: relative;
+      left: auto;
+      top: auto;
+      margin-top: var(--s-7);
+      font-size: clamp(38px, 10.6vw, 60px);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+    }
+
+    .titulo {
+      text-wrap: balance;
+    }
+
+    .linha {
+      display: inline;
+      overflow: visible;
+      padding: 0;
+      margin: 0;
+      white-space: normal;
+    }
+
+    .linha-texto {
+      display: inline;
+    }
+
+    .apoio {
+      position: relative;
+      left: auto;
+      top: auto;
+      margin-top: var(--s-3);
+      font-size: 19px;
+      line-height: 1.45;
+      white-space: normal;
+      text-box: none;
+    }
+
+    .cta {
+      position: relative;
+      left: auto;
+      top: auto;
+      width: 100%;
+      height: 58px;
+      margin-top: var(--s-4);
+      font-size: 19px;
+    }
+
+    .abertura :global(.simbolo) {
+      position: relative;
+      left: auto;
+      top: auto;
+      align-self: flex-end;
+      width: 74vw;
+      margin: var(--s-6) -14vw -18vw 0;
+    }
+  }
+</style>

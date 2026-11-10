@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T05:50:56+00:00",
+  "title": "Design System: Missionária HUB",
+  "extensions": {
+    "source": {
+      "artifact": "src/pages/index.astro",
+      "stylesheet": "src/styles/global.css",
+      "motion": "src/scripts/movimento.ts",
+      "logo": "src/components/Simbolo.astro (geometry from referencias/simbolo-missionaria.svg)",
+      "comp": ".impeccable/mocks/comp-b1-abertura.png",
+      "compSpec": ".impeccable/build/spec.json",
+      "referenceFrame": "1280px. Frontmatter sizes are resolved at this viewport width because the DESIGN.md format only accepts px/em/rem; the clamp() custom properties listed here are canonical."
+    },
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Press Black",
+        "canonical": "#080808",
+        "cssVar": "--ink",
+        "oklch": "oklch(13.4% 0 0)",
+        "provenance": "spec.json palette #080808 (21.6% of the approved comp)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(73% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "note": "Ramp synthesized for the panel strip only. The system uses no tints."
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Magazine Paper",
+        "canonical": "#f8f8f8",
+        "cssVar": "--paper",
+        "oklch": "oklch(97.9% 0 0)",
+        "provenance": "spec.json palette #f8f8f8 (76.5% of the approved comp)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(73% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "note": "Ramp synthesized for the panel strip only. The system uses no tints."
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#3a3a3a",
+        "cssVar": "--ink-soft",
+        "oklch": "oklch(34.9% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(73% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "note": "Text only, never a surface."
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline Ink",
+        "canonical": "rgb(8 8 8 / 0.16)",
+        "cssVar": "--rule",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(73% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "note": "1px row dividers on paper only."
+      },
+      "rule-on-ink": {
+        "role": "neutral",
+        "displayName": "Hairline Paper",
+        "canonical": "rgb(248 248 248 / 0.28)",
+        "cssVar": null,
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26% 0 0)",
+          "oklch(37% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(61% 0 0)",
+          "oklch(73% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ],
+        "note": "1px row dividers on black. A repeated literal (Equipe.astro twice, BarraFixa.astro once), not a custom property."
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "cssVar": "--t-mega",
+        "canonical": "clamp(64px, 10.5vw, 200px)",
+        "purpose": "Platform names in the study; questionnaire part letters (line-height 0.78, -0.04em)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "cssVar": "--t-xl",
+        "canonical": "clamp(42px, 5.9vw, 112px)",
+        "purpose": "Section titles, the letter's salutation, next-step numbers, the study's conclusion, step names in the pinned passage. The closing verse runs at 1.22x."
+      },
+      "title": {
+        "displayName": "Title",
+        "cssVar": "--t-l",
+        "canonical": "clamp(30px, 3.6vw, 64px)",
+        "purpose": "Pull quotes, part titles, step names, the signature."
+      },
+      "title-small": {
+        "displayName": "Title Small",
+        "cssVar": "--t-m",
+        "canonical": "clamp(23px, 2.1vw, 36px)",
+        "purpose": "Every question's text; the opening line of each platform study."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "cssVar": "--t-l",
+        "canonical": "clamp(30px, 3.6vw, 64px)",
+        "purpose": "Counts that change as the reader works: index total, curve changes. Also used at --t-xl (send counter) and 20px (fixed bar)."
+      },
+      "body": {
+        "displayName": "Body",
+        "cssVar": "--t-body",
+        "canonical": "clamp(18px, 1.5625vw, 23px)",
+        "purpose": "All reading text, measure 34em. Base page text is 1.125rem at 1.55."
+      },
+      "body-small": {
+        "displayName": "Body Small",
+        "cssVar": "--t-small",
+        "canonical": "clamp(15px, 1.17vw, 17px)",
+        "purpose": "'Why I ask' notes (40em), captions, sources, index entries, footer."
+      },
+      "label": {
+        "displayName": "Label",
+        "cssVar": "--t-label",
+        "canonical": "clamp(12px, 0.94vw, 14px)",
+        "textTransform": "uppercase",
+        "purpose": "Table heads, row headers, field-group labels, definition terms, passage caption, verse citation, save status, question number boxes. Never above a section heading."
+      },
+      "button": {
+        "displayName": "Button",
+        "cssVar": null,
+        "canonical": "clamp(17px, 1.3vw, 20px)",
+        "purpose": "Button labels, sentence case."
+      },
+      "option": {
+        "displayName": "Option",
+        "cssVar": null,
+        "canonical": "clamp(16px, 1.2vw, 18px)",
+        "purpose": "Option labels, sentence case."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "cssVar": null,
+        "canonical": "calc(19.5 * var(--u)) in the masthead; 14px in the fixed bar",
+        "purpose": "MISSIONÁRIA HUB beside the symbol."
+      },
+      "opening-headline": {
+        "displayName": "Opening Headline (not a token)",
+        "cssVar": null,
+        "canonical": "calc(59.5 * var(--u)) / calc(73.6 * var(--u)), -0.012em; narrow: clamp(38px, 10.6vw, 60px) / 1.1",
+        "purpose": "The comp-locked first-viewport headline only; not a reusable level."
+      }
+    },
+    "spacingMeta": {
+      "margin": {
+        "cssVar": "--m",
+        "canonical": "clamp(20px, 5vw, 96px)"
+      },
+      "gutter": {
+        "cssVar": "--g",
+        "canonical": "clamp(16px, 1.875vw, 32px)"
+      },
+      "respiro": {
+        "cssVar": "--respiro",
+        "canonical": "var(--s-8)"
+      },
+      "corner-inset": {
+        "cssVar": null,
+        "canonical": "clamp(14px, 1.5vw, 26px)"
+      },
+      "frame-unit": {
+        "cssVar": "--u",
+        "canonical": "calc(100vw / 1280)",
+        "note": "Opening spread only."
+      },
+      "s-1": {
+        "cssVar": "--s-1",
+        "canonical": "8px"
+      },
+      "s-2": {
+        "cssVar": "--s-2",
+        "canonical": "16px"
+      },
+      "s-3": {
+        "cssVar": "--s-3",
+        "canonical": "clamp(16px, 1.667vw, 24px)"
+      },
+      "s-4": {
+        "cssVar": "--s-4",
+        "canonical": "clamp(24px, 2.222vw, 32px)"
+      },
+      "s-5": {
+        "cssVar": "--s-5",
+        "canonical": "clamp(32px, 3.333vw, 48px)"
+      },
+      "s-6": {
+        "cssVar": "--s-6",
+        "canonical": "clamp(40px, 4.444vw, 64px)"
+      },
+      "s-7": {
+        "cssVar": "--s-7",
+        "canonical": "clamp(56px, 6.667vw, 96px)"
+      },
+      "s-8": {
+        "cssVar": "--s-8",
+        "canonical": "clamp(80px, 8.889vw, 128px)"
+      }
+    },
+    "shadows": [
+      {
+        "name": "bar-hairline",
+        "value": "0 1px 0 var(--ink)",
+        "purpose": "Not elevation: the 1px lower edge of the visible fixed bar. Over a black spread it becomes 0 1px 0 rgb(248 248 248 / 0.28)."
+      },
+      {
+        "name": "option-ring",
+        "value": "inset 0 0 0 1px var(--ink)",
+        "purpose": "Not elevation: doubles an option's border to 2px on hover without shifting layout."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every CSS state transition (--ease-out)."
+      },
+      {
+        "name": "ease-entrance",
+        "value": "expo.out",
+        "purpose": "GSAP entrances, line reveals, curve morph, magnetic pull, fill settle."
+      },
+      {
+        "name": "ease-wipe",
+        "value": "expo.inOut",
+        "purpose": "The platform-name wipe in the study."
+      },
+      {
+        "name": "ease-draw",
+        "value": "power2.inOut",
+        "purpose": "A symbol piece drawing its outline in."
+      },
+      {
+        "name": "duration-option",
+        "value": "0.18s",
+        "purpose": "Option fill, color and hover ring."
+      },
+      {
+        "name": "duration-index",
+        "value": "0.2s",
+        "purpose": "Index entry inversion and padding; answer line."
+      },
+      {
+        "name": "duration-button",
+        "value": "0.22s",
+        "purpose": "Button inversion."
+      },
+      {
+        "name": "duration-mark",
+        "value": "0.35s",
+        "purpose": "Question number fill, fixed bar theme flip, link underline growth."
+      },
+      {
+        "name": "duration-slide",
+        "value": "0.5s",
+        "purpose": "Fixed bar slide-in; symbol piece state change (fill and stroke opacity)."
+      },
+      {
+        "name": "line-reveal",
+        "value": "yPercent 105-110 to 0, 1.1-1.4s, stagger 0.08-0.12, once at top 82-85%",
+        "purpose": "SplitText line masks for the study's conclusion and the closing verse; the opening headline uses yPercent 108, 1.25s, stagger 0.1 (narrow: fade and 24px rise, 1.1s, stagger 0.08)."
+      },
+      {
+        "name": "name-wipe",
+        "value": "clip-path inset(0 100% -20% 0) to none, 1.4s expo.inOut, stagger 0.16",
+        "purpose": "Eklesia and InPeace names wipe in from the left."
+      },
+      {
+        "name": "opening-assembly",
+        "value": "heart y+90 1.5s at 0.1s (0.5s narrow); chevron y-150 1.35s at 0.32s; diamond y-260 1.25s at 0.52s; support line 0.62s; button 0.74s; all from opacity 0",
+        "purpose": "The symbol assembles itself in the first viewport."
+      },
+      {
+        "name": "letter-parallax",
+        "value": "diamond -170, chevron -85, heart 0 (from 0.35x opposite), scrub 0.8",
+        "purpose": "Symbol pieces drift upward at different rates through the letter spread, so the symbol opens up as it passes."
+      },
+      {
+        "name": "step-passage",
+        "value": "pin below the bar, scrub 0.7, scroll distance 1.15x track overflow, min-width 1024px and min-height 620px",
+        "purpose": "Six steps pass horizontally; the large symbol advances state; a 3px progress bar scales from the left."
+      },
+      {
+        "name": "piece-draw",
+        "value": "drawSVG 0% to 100%, 1.1s power2.inOut",
+        "purpose": "A piece going from ghost to outline."
+      },
+      {
+        "name": "piece-fill",
+        "value": "scale 0.94 to 1, 0.8s expo.out",
+        "purpose": "A piece becoming filled."
+      },
+      {
+        "name": "calendar-marks",
+        "value": "scale 0 to 1, 0.6s expo.out, stagger day x 0.07 + meeting x 0.03, once at top 75%",
+        "purpose": "Team calendar diamonds pop in."
+      },
+      {
+        "name": "curve-reveal",
+        "value": "clip width 92 to 1000, scrub 0.6, top 80% to center 55%",
+        "purpose": "The failure curve draws with the scroll."
+      },
+      {
+        "name": "curve-morph",
+        "value": "morphSVG 0.9s expo.out",
+        "purpose": "The real curve jumps on 'Fazer mais uma mudança'."
+      },
+      {
+        "name": "magnetic",
+        "value": "up to 6px x and 5px y, quickTo 0.6s expo.out, (hover: hover) and (pointer: fine) only",
+        "purpose": "Opening button, send buttons and curve buttons lean toward the pointer."
+      },
+      {
+        "name": "smooth-scroll",
+        "value": "Lenis lerp 0.12; anchor scroll 1.4s, offset bar height + 8px",
+        "purpose": "Page scroll and in-page links."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce skips the tem-movimento class",
+        "purpose": "No GSAP, Lenis, pinning or entrance hiding; steps render as a static grid with per-step symbols; content is visible at once. CSS state transitions still run. Entrance hiding is also released after 2.5s as a safety."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "value": "860px",
+        "query": "(max-width: 860px)",
+        "purpose": "The system breakpoint: 12 to 4 columns, single-column bodies, menus hidden, index as tab strip, 56px bar."
+      },
+      {
+        "name": "steps-fold",
+        "value": "1100px",
+        "query": "(max-width: 1100px)",
+        "purpose": "Next steps fold from 6 to 3 columns."
+      },
+      {
+        "name": "passage",
+        "value": "1024px",
+        "query": "(min-width: 1024px) and (min-height: 620px)",
+        "purpose": "Pinned horizontal step passage runs only at or above this size."
+      },
+      {
+        "name": "reference-frame",
+        "value": "1280px",
+        "query": null,
+        "purpose": "Not a breakpoint: the comp frame for --u and for the frontmatter's resolved sizes."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid ink rectangle for the main action in a group; inverts on hover.",
+      "html": "<button class=\"ds-botao\" type=\"button\">Fazer mais uma mudança</button>",
+      "css": ".ds-botao { display: inline-flex; align-items: center; justify-content: center; gap: 0.6em; min-height: 52px; padding: 0 1.5em; border: 1px solid var(--ink, #080808); border-radius: 0; background: var(--ink, #080808); color: var(--paper, #f8f8f8); font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-weight: 500; font-size: clamp(17px, 1.3vw, 20px); line-height: 1; text-decoration: none; cursor: pointer; transition: background-color 0.22s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), color 0.22s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-botao:hover { background: var(--paper, #f8f8f8); color: var(--ink, #080808); } .ds-botao:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; } .ds-botao:disabled { cursor: not-allowed; opacity: 0.4; }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Outlined ink rectangle for every secondary action; fills with ink on hover.",
+      "html": "<button class=\"ds-botao-linha\" type=\"button\">Voltar ao começo</button>",
+      "css": ".ds-botao-linha { display: inline-flex; align-items: center; justify-content: center; gap: 0.6em; min-height: 52px; padding: 0 1.5em; border: 1px solid var(--ink, #080808); border-radius: 0; background: transparent; color: var(--ink, #080808); font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-weight: 500; font-size: clamp(17px, 1.3vw, 20px); line-height: 1; cursor: pointer; transition: background-color 0.22s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), color 0.22s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-botao-linha:hover { background: var(--ink, #080808); color: var(--paper, #f8f8f8); } .ds-botao-linha:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Buttons on a Black Spread",
+      "kind": "button",
+      "refersTo": "button-on-ink",
+      "description": "Both button variants flipped for a black spread: paper fill or paper outline, inverting on hover.",
+      "html": "<div class=\"ds-preta-botoes\"><button class=\"ds-botao-tinta\" type=\"button\">Mandar pelo WhatsApp</button><button class=\"ds-botao-tinta-linha\" type=\"button\">Copiar as respostas</button></div>",
+      "css": ".ds-preta-botoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 620px; padding: 32px; background: var(--ink, #080808); } .ds-botao-tinta, .ds-botao-tinta-linha { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 1.5em; border: 1px solid var(--paper, #f8f8f8); border-radius: 0; font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-weight: 500; font-size: clamp(17px, 1.3vw, 20px); line-height: 1; cursor: pointer; transition: background-color 0.22s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), color 0.22s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-botao-tinta { background: var(--paper, #f8f8f8); color: var(--ink, #080808); } .ds-botao-tinta:hover { background: var(--ink, #080808); color: var(--paper, #f8f8f8); } .ds-botao-tinta-linha { background: transparent; color: var(--paper, #f8f8f8); } .ds-botao-tinta-linha:hover { background: var(--paper, #f8f8f8); color: var(--ink, #080808); } .ds-botao-tinta:focus-visible, .ds-botao-tinta-linha:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Options",
+      "kind": "chip",
+      "refersTo": "option",
+      "description": "Outlined answer choices; hover doubles the border, selection fills with ink.",
+      "html": "<div class=\"ds-opcoes\" role=\"group\" aria-label=\"Para quem o aplicativo é\"><button class=\"ds-opcao\" type=\"button\" aria-pressed=\"true\">Membros</button><button class=\"ds-opcao\" type=\"button\" aria-pressed=\"false\">Visitantes</button><button class=\"ds-opcao\" type=\"button\" aria-pressed=\"false\">Líderes de célula</button><button class=\"ds-opcao\" type=\"button\" aria-pressed=\"false\">Secretaria</button></div>",
+      "css": ".ds-opcoes { display: flex; flex-wrap: wrap; gap: 8px; } .ds-opcao { min-height: 44px; padding: 0 1em; border: 1px solid var(--ink, #080808); border-radius: 0; background: transparent; color: var(--ink, #080808); font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-size: clamp(16px, 1.2vw, 18px); line-height: 1; cursor: pointer; transition: background-color 0.18s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), color 0.18s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow 0.18s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-opcao:hover { box-shadow: inset 0 0 0 1px var(--ink, #080808); } .ds-opcao[aria-pressed='true'], .ds-opcao[aria-checked='true'] { background: var(--ink, #080808); color: var(--paper, #f8f8f8); } .ds-opcao:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }"
+    },
+    {
+      "name": "Question and Answer Field",
+      "kind": "input",
+      "refersTo": "answer-field",
+      "description": "A numbered question with its 'why I ask' note and a dashed answer line; answering fills the number box and makes the line solid.",
+      "html": "<div class=\"ds-pergunta\"><p class=\"ds-pergunta-cabeca\"><span class=\"ds-pergunta-numero\">A1</span><label class=\"ds-pergunta-texto\" for=\"ds-r-a1\">Se o Missionária HUB ficasse pronto amanhã, qual seria a primeira coisa que o senhor faria nele?</label></p><p class=\"ds-pergunta-porque\"><span class=\"ds-rotulo\">Por que eu pergunto</span> Geralmente é a primeira tela que a gente desenha.</p><textarea class=\"ds-resposta\" id=\"ds-r-a1\" rows=\"3\" placeholder=\"Escreva do seu jeito…\"></textarea></div><div class=\"ds-pergunta\" data-respondida=\"true\"><p class=\"ds-pergunta-cabeca\"><span class=\"ds-pergunta-numero\">A2</span><label class=\"ds-pergunta-texto\" for=\"ds-r-a2\">Uma pergunta já respondida.</label></p><textarea class=\"ds-resposta\" id=\"ds-r-a2\" rows=\"2\">A resposta escrita pelo pastor.</textarea></div>",
+      "css": ".ds-pergunta { padding: 32px 0; border-top: 1px solid var(--rule, rgb(8 8 8 / 0.16)); color: var(--ink, #080808); } .ds-pergunta-cabeca { display: grid; grid-template-columns: 60px 1fr; gap: 18px; margin: 0; } .ds-pergunta-numero { display: inline-grid; place-items: center; align-self: start; height: 1.9em; margin-top: 0.2em; border: 1px solid var(--ink, #080808); font-family: var(--brand, 'League Spartan', 'Helvetica Neue', Arial, sans-serif); font-weight: 500; font-size: clamp(12px, 0.94vw, 14px); letter-spacing: 0.1em; transition: background-color 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), color 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-pergunta[data-respondida='true'] .ds-pergunta-numero { background: var(--ink, #080808); color: var(--paper, #f8f8f8); } .ds-pergunta-texto { font-family: var(--serif, 'Prata', 'Times New Roman', serif); font-size: clamp(23px, 2.1vw, 36px); line-height: 1.3; letter-spacing: -0.01em; } .ds-pergunta-porque, .ds-resposta { margin-left: 78px; } .ds-pergunta-porque { max-width: 40em; margin-top: 14px; margin-bottom: 0; font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-size: clamp(15px, 1.17vw, 17px); line-height: 1.55; color: var(--ink-soft, #3a3a3a); } .ds-rotulo { margin-right: 0.6em; color: var(--ink, #080808); font-family: var(--brand, 'League Spartan', 'Helvetica Neue', Arial, sans-serif); font-weight: 500; font-size: clamp(12px, 0.94vw, 14px); letter-spacing: 0.16em; text-transform: uppercase; } .ds-resposta { display: block; width: calc(100% - 78px); min-height: 4.8em; margin-top: 22px; padding: 8px 0 16px; border: 0; border-bottom: 1px dashed var(--ink, #080808); border-radius: 0; background: transparent; color: var(--ink, #080808); font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-size: clamp(18px, 1.5625vw, 23px); line-height: 1.6; resize: none; } .ds-resposta::placeholder { color: #6b6b6b; } .ds-resposta:focus { outline: none; border-bottom-style: solid; border-bottom-width: 2px; padding-bottom: 15px; } .ds-pergunta[data-respondida='true'] .ds-resposta { border-bottom-style: solid; }"
+    },
+    {
+      "name": "Fixed Bar",
+      "kind": "nav",
+      "refersTo": "fixed-bar",
+      "description": "The bar that slides in after the opening: flat symbol and wordmark, centered links with a growing underline, and the serif answer count.",
+      "html": "<div class=\"ds-barra\"><a class=\"ds-barra-marca\" href=\"#topo\"><svg viewBox=\"-274 154 548 716\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M0 154.7 58.3 213 0 271.3-58.3 213Z\"/><path d=\"M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z\"/><path d=\"M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z\"/></svg><span>MISSIONÁRIA HUB</span></a><nav class=\"ds-barra-menu\"><a href=\"#o-que-vimos\">O que vimos</a><a href=\"#como-funciona\">Como funciona</a><a href=\"#perguntas\">Perguntas</a><a href=\"#enviar\">Enviar</a></nav><p class=\"ds-barra-progresso\">12/37</p></div>",
+      "css": ".ds-barra { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px; height: 64px; padding: 0 32px; background: var(--paper, #f8f8f8); color: var(--ink, #080808); box-shadow: 0 1px 0 var(--ink, #080808); font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); } .ds-barra-marca { display: flex; align-items: center; gap: 14px; color: inherit; text-decoration: none; font-family: var(--brand, 'League Spartan', 'Helvetica Neue', Arial, sans-serif); font-weight: 700; font-size: 14px; letter-spacing: 0.07em; } .ds-barra-marca svg { height: 30px; width: auto; } .ds-barra-menu { display: flex; justify-content: center; gap: 32px; font-size: 16px; } .ds-barra-menu a { color: inherit; text-decoration: none; padding-bottom: 2px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.35s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-barra-menu a:hover, .ds-barra-menu a:focus-visible { background-size: 100% 1px; } .ds-barra-menu a:focus-visible, .ds-barra-marca:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; } .ds-barra-progresso { margin: 0; font-family: var(--serif, 'Prata', 'Times New Roman', serif); font-size: 20px; font-variant-numeric: lining-nums tabular-nums; }"
+    },
+    {
+      "name": "Black Spread",
+      "kind": "card",
+      "refersTo": "black-spread",
+      "description": "The full-bleed black section: paper type, inset diamond corner marks, and the flat paper symbol cropped by the edge.",
+      "html": "<section class=\"ds-preta\"><span class=\"ds-cantos\" aria-hidden=\"true\"><i data-canto=\"1\"></i><i data-canto=\"2\"></i><i data-canto=\"3\"></i></span><h2 class=\"ds-preta-titulo\">Quando terminar, é só me mandar.</h2><p class=\"ds-preta-texto\"><span class=\"ds-preta-numero\">12</span> de 37 respondidas.</p><svg class=\"ds-preta-simbolo\" viewBox=\"-274 154 548 716\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M0 154.7 58.3 213 0 271.3-58.3 213Z\"/><path d=\"M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z\"/><path d=\"M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z\"/></svg></section>",
+      "css": ".ds-preta { position: relative; overflow: hidden; min-height: 420px; padding: 96px 64px; background: var(--ink, #080808); color: var(--paper, #f8f8f8); } .ds-cantos { position: absolute; inset: clamp(14px, 1.5vw, 26px); pointer-events: none; z-index: 1; } .ds-cantos i { position: absolute; width: 9px; height: 9px; background: currentColor; rotate: 45deg; } .ds-cantos i[data-canto='1'] { top: 0; left: 0; } .ds-cantos i[data-canto='2'] { top: 0; right: 0; } .ds-cantos i[data-canto='3'] { bottom: 0; left: 0; } .ds-preta-titulo { position: relative; z-index: 2; max-width: 9em; margin: 0; font-family: var(--serif, 'Prata', 'Times New Roman', serif); font-weight: 400; font-size: clamp(42px, 5.9vw, 112px); line-height: 1.02; letter-spacing: -0.02em; text-wrap: balance; } .ds-preta-texto { position: relative; z-index: 2; margin: 28px 0 0; font-family: var(--sans, 'Catamaran', 'Helvetica Neue', Arial, sans-serif); font-size: clamp(18px, 1.5625vw, 23px); } .ds-preta-numero { font-family: var(--serif, 'Prata', 'Times New Roman', serif); font-size: clamp(42px, 5.9vw, 112px); line-height: 1; margin-right: 0.12em; font-variant-numeric: lining-nums tabular-nums; } .ds-preta-simbolo { position: absolute; right: -11%; bottom: -36%; width: 46%; height: auto; color: var(--paper, #f8f8f8); }"
+    },
+    {
+      "name": "Assembling Symbol",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The three-piece symbol in its assembly states, as used for the six steps: ghost (dashed), outline, filled.",
+      "html": "<div class=\"ds-etapas\"><figure><svg class=\"ds-etapa\" viewBox=\"-280 148 560 728\" aria-hidden=\"true\"><path class=\"ds-peca ds-fantasma\" d=\"M0 154.7 58.3 213 0 271.3-58.3 213Z\"/><path class=\"ds-peca ds-fantasma\" d=\"M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z\"/><path class=\"ds-peca ds-fantasma\" d=\"M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z\"/></svg><figcaption>Antes de começar</figcaption></figure><figure><svg class=\"ds-etapa\" viewBox=\"-280 148 560 728\" aria-hidden=\"true\"><path class=\"ds-peca ds-cheio\" d=\"M0 154.7 58.3 213 0 271.3-58.3 213Z\"/><path class=\"ds-peca ds-traco\" d=\"M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z\"/><path class=\"ds-peca ds-traco\" d=\"M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z\"/></svg><figcaption>2 de 6 · Desenhar</figcaption></figure><figure><svg class=\"ds-etapa\" viewBox=\"-280 148 560 728\" aria-hidden=\"true\"><path class=\"ds-peca ds-cheio\" d=\"M0 154.7 58.3 213 0 271.3-58.3 213Z\"/><path class=\"ds-peca ds-cheio\" d=\"M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z\"/><path class=\"ds-peca ds-traco\" d=\"M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z\"/></svg><figcaption>3 de 6 · Construir</figcaption></figure><figure><svg class=\"ds-etapa\" viewBox=\"-280 148 560 728\" aria-hidden=\"true\"><path class=\"ds-peca ds-cheio\" d=\"M0 154.7 58.3 213 0 271.3-58.3 213Z\"/><path class=\"ds-peca ds-cheio\" d=\"M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z\"/><path class=\"ds-peca ds-cheio\" d=\"M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z\"/></svg><figcaption>4 de 6 · Testar</figcaption></figure></div>",
+      "css": ".ds-etapas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink, #080808); background: var(--paper, #f8f8f8); color: var(--ink, #080808); } .ds-etapas figure { display: grid; justify-items: center; gap: 16px; margin: 0; padding: 28px 16px; } .ds-etapas figure + figure { border-left: 1px solid var(--ink, #080808); } .ds-etapa { display: block; width: 72px; height: auto; overflow: visible; } .ds-peca { stroke: currentColor; stroke-width: 1.25px; vector-effect: non-scaling-stroke; stroke-linejoin: miter; transition: fill-opacity 0.5s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)), stroke-opacity 0.5s var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-fantasma { fill: currentColor; fill-opacity: 0; stroke-dasharray: 4 5; stroke-opacity: 0.55; } .ds-traco { fill: currentColor; fill-opacity: 0; stroke-opacity: 1; } .ds-cheio { fill: currentColor; fill-opacity: 1; stroke-opacity: 1; } .ds-etapas figcaption { font-family: var(--brand, 'League Spartan', 'Helvetica Neue', Arial, sans-serif); font-weight: 500; font-size: clamp(12px, 0.94vw, 14px); letter-spacing: 0.16em; text-transform: uppercase; text-align: center; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Issue Made for One Reader",
+    "overview": "The page is one issue of a fashion magazine, printed for a single reader: the pastor. Coated white paper, true black ink, a high-contrast didone set huge against a plain grotesk, and the voice of a letter from Matheus. Every spread either asks him something or shows him how the work will be done. Density is low on purpose; the vertical breath between sections is the luxury, and the jump in scale between a display line and a reading line carries the whole hierarchy. There are no tints, no grey surfaces, no photographs and no icons; the Missionária symbol is the only image.\n\nBlack is an event, not a theme. It arrives four times as a full-bleed spread (the letter, how the team works, sending the answers, the closing verse) carrying white type, diamond corner marks and the symbol at monumental size, cropped by the edge of the page. Everything the reader can touch speaks in two states: at rest it is drawn in ink, active it inverts. Anything not yet done is a dashed line; anything done is solid or filled, so each answer visibly inks the page.\n\n**Motion grammar.** One long ease (`ease-out`, cubic-bezier(0.16, 1, 0.3, 1), and GSAP's `expo.out`) runs through everything. Display lines rise out of line masks, the symbol assembles itself from its three pieces, the six steps of making an app pass horizontally under a pinned frame while a large symbol fills in piece by piece, the failure curve draws with the scroll and jumps when the reader asks for \"one more change\", and buttons lean a few pixels toward a fine pointer. All of it is opt-in: when the reader prefers reduced motion nothing is hidden, pinned or smoothed, and the page reads complete and still.\n\nRejected by the user and confirmed by the build: an app landing page with phone mockups and feature cards; an all-black luxury page (it read as morbid); a 3D or lacquered logo; slogan headlines and technical-drawing labels; the church's usual navy, or any blue.\n\nThe direction contract asked for one module from the logo's diamond to set the grid. The build keeps the diamond as the only ornament (corner marks, calendar marks) but sets the grid on fluid margins and gutters, not on a diamond-derived unit; this file records the build.",
+    "keyCharacteristics": [
+      "White paper ground, true black ink, black only as full-bleed spreads.",
+      "A didone at one weight, set huge and tight; hierarchy by scale alone.",
+      "Two states for everything interactive: drawn at rest, inverted when active.",
+      "Dashed means not yet; solid means done.",
+      "The flat Missionária symbol, monumental and cropped on black, assembling from three pieces as the process is explained.",
+      "Square corners and 1px hairlines; no shadows, no gradients, no tints.",
+      "Long expo-out choreography that disappears entirely under reduced motion."
+    ],
+    "rules": [
+      {
+        "name": "The Two Inks Rule",
+        "body": "Only Press Black and Magazine Paper ever fill a surface. Soft Ink and the hairlines exist only as text and 1px lines; there is no grey panel, no tinted band, no gradient, and no blue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Inversion Rule",
+        "body": "An active state swaps ink and paper; it never introduces a midtone. Hover on a button, a selected option, the current index entry and an answered question number all invert. The only translucency on a control is the disabled state (40% opacity), reserved for a control with nothing left to do.",
+        "section": "colors"
+      },
+      {
+        "name": "The One-Weight Didone Rule",
+        "body": "Prata is set at 400 only: never bold, never italic, never tracked open. It tightens as it grows, from -0.01em at question size to -0.04em at the part letters.",
+        "section": "typography"
+      },
+      {
+        "name": "The Three Voices Rule",
+        "body": "Prata speaks (titles, quotes, questions, numbers), Catamaran explains (reading text, buttons, options, answers), League Spartan names (caps labels and the wordmark). A voice never borrows another's job: no reading text in Prata, no display lines in Catamaran, no caps sentences in League Spartan.",
+        "section": "typography"
+      },
+      {
+        "name": "The Serif Numeral Rule",
+        "body": "Every count the reader watches change (answers counted in the bar, the index and the send spread, and the curve's changes) is set in Prata with lining tabular figures. Step numbers and part letters are Prata too.",
+        "section": "typography"
+      },
+      {
+        "name": "The Full-Bleed Black Rule",
+        "body": "Black is a whole section, edge to edge, or it is nothing. It never appears as a card, band or panel inside a paper section.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Respiro Rule",
+        "body": "Every section breathes respiro (s-8) above and below. When two paper sections follow each other, the second drops its top padding, so their content is one s-8 apart, never two. Inside a section the scale is fixed by relationship: title to introduction s-4; header to body, and one block to the next, s-7; related sub-blocks, and a closing statement under the content it sums up, s-6; column insets s-5; the parts of one item s-2 to s-3. A section title always starts on the respiro line. Every gap between blocks, and between the parts of a component, is a step on the scale; only type-relative offsets inside a text block (in em) sit outside it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Ruled Column Rule",
+        "body": "Adjacent columns are divided by a 1px Press Black rule (Magazine Paper on black), never by a gutter alone, and each section body opens on one: Eklesia beside InPeace, the three-up steps, the six next steps, the questionnaire index beside the form.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Paper Rule",
+        "body": "Nothing floats above the page. If an element needs to stand out, it changes scale or inverts; it never lifts.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "Buttons, options, answer fields, number boxes and index tabs all have 0px corners. A rounded control is off-system.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Diamond Ornament Rule",
+        "body": "If the page needs an ornament, it is the logo's diamond: corner marks, calendar marks, the symbol itself. No dots, stars, bullets or glyph icons.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Dashed Means Not Yet Rule",
+        "body": "A dashed line is a promise: an unanswered question's answer line, a ghost piece of the symbol, the idealized curve. When the thing is done the line turns solid (or the piece fills). Dashes are never decoration.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep every surface Magazine Paper or Press Black; Soft Ink and the two hairlines appear only as text and 1px lines.",
+      "Do invert ink and paper for every active state (button hover, selected option, current index entry, answered question number), and keep hover on options to the 2px border ring.",
+      "Do set titles, quotes, questions and every changing number in Prata 400, and get hierarchy from scale: Display (134.4px at the reference frame) down to Label (12px).",
+      "Do set a section header that has an introduction with the title on columns 1 to 7 and the introduction on columns 9 to 12, bottom-aligned, then start the body on a 1px Press Black rule.",
+      "Do draw what is not yet done as a dashed line and turn it solid when it is done.",
+      "Do bring black in only as a full-bleed spread with paper type, inset diamond corner marks and the paper symbol cropped by the page edge.",
+      "Do keep options at least 44px tall and buttons at least 52px tall, so the oldest member can tap them.",
+      "Do gate every scroll animation, smooth scroll, pin and entrance behind the no-reduced-motion check, so the page is complete without them."
+    ],
+    "donts": [
+      "Don't use tints, grey fills, gradients, or any color beyond black and white; the church's navy and every other blue are out.",
+      "Don't round the corners of controls or containers, and don't add drop shadows or blur; `box-shadow` is allowed only as a 1px hairline.",
+      "Don't bold, italicize or track open the didone, and don't set reading text in Prata or display lines in Catamaran.",
+      "Don't put a caps label above a section heading; League Spartan caps label table heads, field groups, definition terms and captions only.",
+      "Don't render the logo with depth, gloss, gradients, lacquer or 3D; the only non-solid renderings are the dashed ghost and outline states of the assembly sequence.",
+      "Don't place black as a card, band or panel inside a paper section, or let two black spreads touch.",
+      "Don't add photographs, illustrations, icon sets or glyph arrows; the Missionária symbol is the only image.",
+      "Don't use technical-drawing labels (coordinates, figure numbers, stage codes) or slogan headlines; labels name things the way a magazine would."
+    ]
+  }
+}

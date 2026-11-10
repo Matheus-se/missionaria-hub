@@ -1,0 +1,140 @@
+---
+import Cantos from './Cantos.astro';
+import Simbolo from './Simbolo.astro';
+import { paragrafos, secao } from '../lib/conteudo';
+
+const [versiculo, assinatura] = paragrafos(secao('Fecho').blocos)[0] ?? ['', ''];
+const separador = versiculo.lastIndexOf('"');
+const frase = versiculo.slice(0, separador + 1).replace(/"/g, '');
+const referencia = versiculo.slice(separador + 1).trim();
+const palavras = frase.split(' ');
+---
+
+<footer class="secao secao--preta fecho" aria-label="Fim da página">
+  <Cantos />
+  <div class="fecho-palco">
+    <blockquote class="fecho-versiculo">
+      <p>
+        “{
+          palavras.map((palavra, i) => (
+            <>
+              <span class:list={{ 'sem-quebra': palavra.includes('-') }}>{palavra}</span>
+              {i < palavras.length - 1 ? ' ' : ''}
+            </>
+          ))
+        }”
+      </p>
+      <cite>{referencia}</cite>
+    </blockquote>
+    <Simbolo class="fecho-simbolo-grande" />
+  </div>
+  <div class="fecho-rodape">
+    <a class="fecho-marca" href="#topo" aria-label="Voltar ao início">
+      <Simbolo class="fecho-simbolo" />
+    </a>
+    <p>{assinatura}</p>
+    <a class="fecho-topo" href="#topo">Voltar ao início</a>
+  </div>
+</footer>
+
+<style>
+  .fecho {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+    padding-bottom: var(--s-5);
+    overflow: hidden;
+  }
+
+  .fecho-palco {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    align-items: end;
+    gap: var(--g);
+  }
+
+  .fecho-palco :global(.fecho-simbolo-grande) {
+    justify-self: end;
+    width: min(38vw, 620px);
+    height: auto;
+    margin: 0 calc(var(--m) * -1 - 10vw) calc(var(--respiro) * -0.35) 0;
+    color: var(--paper);
+  }
+
+  .sem-quebra {
+    white-space: nowrap;
+  }
+
+  .fecho-versiculo {
+    margin: 0;
+    container-type: inline-size;
+  }
+
+  .fecho-versiculo p {
+    margin: 0;
+    font-family: var(--serif);
+    /* A palavra mais longa (“Disponhamo-nos, 8,26 em) cabe sempre na coluna. */
+    font-size: min(calc(var(--t-xl) * 1.22), 11.6cqi);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .fecho-versiculo cite {
+    display: block;
+    margin-top: var(--s-4);
+    font-family: var(--brand);
+    font-style: normal;
+    font-weight: 500;
+    font-size: var(--t-label);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .fecho-rodape {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--g);
+    margin-top: var(--s-7);
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--paper);
+    font-size: var(--t-small);
+  }
+
+  .fecho-rodape p {
+    margin: 0;
+  }
+
+  .fecho-marca :global(.fecho-simbolo) {
+    display: block;
+    height: 40px;
+    width: auto;
+    color: var(--paper);
+  }
+
+  .fecho-topo {
+    text-underline-offset: 0.3em;
+  }
+
+  @media (max-width: 860px) {
+    .fecho-palco {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .fecho-palco :global(.fecho-simbolo-grande) {
+      width: 74vw;
+      margin: var(--s-6) -24vw 0 auto;
+    }
+
+    .fecho-rodape {
+      grid-template-columns: auto 1fr;
+    }
+
+    .fecho-topo {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

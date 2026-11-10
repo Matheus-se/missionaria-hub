@@ -1,0 +1,137 @@
+---
+import Simbolo from './Simbolo.astro';
+import { campos, preencher } from '../lib/conteudo';
+
+const texto = campos('Só no computador');
+const [botaoEmail, botaoCopiar] = texto['Botões'].split('·').map((b) => b.trim());
+const assunto = encodeURIComponent(texto['Assunto do e-mail']);
+---
+
+<section class="so-computador" aria-labelledby="so-computador-titulo" data-so-computador data-copiado={texto['Copiado']}>
+  <header class="so-computador-marca" aria-label="Missionária HUB">
+    <Simbolo class="so-computador-marca-simbolo" />
+    <span aria-hidden="true">MISSIONÁRIA HUB</span>
+  </header>
+
+  <div class="so-computador-conteudo">
+    <h1 class="titulo-secao" id="so-computador-titulo">{texto['Título']}</h1>
+    <p class="texto so-computador-texto">{preencher(texto['Texto'])}</p>
+    <p class="texto so-computador-dica">{texto['Dica']}</p>
+    <div class="so-computador-botoes">
+      <a class="botao" href={`mailto:?subject=${assunto}`} data-link-email>{botaoEmail}</a>
+      <button class="botao botao--linha" type="button" data-link-copiar>{botaoCopiar}</button>
+    </div>
+    <p class="so-computador-retorno" role="status" data-link-retorno></p>
+    <p class="rotulo so-computador-janela">{texto['Janela']}</p>
+  </div>
+
+  <div class="so-computador-figura" aria-hidden="true">
+    <Simbolo class="so-computador-simbolo" />
+  </div>
+</section>
+
+<script>
+  const tela = document.querySelector<HTMLElement>('[data-so-computador]');
+  if (tela) {
+    const link = location.href.split('#')[0];
+    const email = tela.querySelector<HTMLAnchorElement>('[data-link-email]');
+    const retorno = tela.querySelector<HTMLElement>('[data-link-retorno]');
+    if (email) email.href += `&body=${encodeURIComponent(link)}`;
+    tela.querySelector('[data-link-copiar]')?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(link);
+        if (retorno) retorno.textContent = tela.dataset.copiado ?? '';
+      } catch {
+        if (retorno) retorno.textContent = link;
+      }
+    });
+  }
+</script>
+
+<style>
+  .so-computador {
+    display: none;
+  }
+
+  /* Só tela: no papel A4 a largura também fica abaixo de 1024 px, e o relatório impresso precisa aparecer. */
+  @media screen and (max-width: 1023px) {
+    :global(body > :not(.so-computador)) {
+      display: none !important;
+    }
+
+    .so-computador {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100svh;
+      padding: var(--s-4) var(--m) 0;
+      overflow: hidden;
+    }
+  }
+
+  .so-computador-marca {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin: 0;
+    font-family: var(--brand);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.07em;
+  }
+
+  .so-computador-marca :global(.so-computador-marca-simbolo) {
+    height: 30px;
+    width: auto;
+  }
+
+  .so-computador-conteudo {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+    margin-top: var(--s-8);
+  }
+
+  .so-computador-texto {
+    margin: var(--s-4) 0 0;
+  }
+
+  .so-computador-dica {
+    margin: var(--s-2) 0 0;
+    color: var(--ink-soft);
+  }
+
+  .so-computador-botoes {
+    display: grid;
+    gap: var(--s-2);
+    max-width: 420px;
+    margin-top: var(--s-5);
+  }
+
+  .so-computador-retorno {
+    min-height: 1.6em;
+    margin: var(--s-2) 0 0;
+    font-size: var(--t-small);
+  }
+
+  .so-computador-janela {
+    margin: var(--s-1) 0 0;
+    color: var(--ink-soft);
+  }
+
+  .so-computador-figura {
+    position: relative;
+    flex: 1 1 0;
+    min-height: 30svh;
+    margin: var(--s-6) calc(var(--m) * -1) 0 0;
+  }
+
+  .so-computador-figura :global(.so-computador-simbolo) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 125%;
+    width: auto;
+    translate: 28% 0;
+  }
+</style>

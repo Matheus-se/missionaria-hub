@@ -1,0 +1,25 @@
+---
+interface Props {
+  class?: string;
+  title?: string;
+}
+
+const { class: className, title } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="-274 154 548 716"
+  fill="currentColor"
+  role={title ? 'img' : undefined}
+  aria-label={title}
+  aria-hidden={title ? undefined : 'true'}
+  focusable="false"
+>
+  <path data-peca="losango" d="M0 154.7 58.3 213 0 271.3-58.3 213Z" />
+  <path data-peca="chevron" d="M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z" />
+  <path
+    data-peca="coracao"
+    d="M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z"
+  />
+</svg>

@@ -1,0 +1,676 @@
+---
+import Cantos from './Cantos.astro';
+import { campos, paragrafos, partes, secao, totalPerguntas } from '../lib/conteudo';
+
+const titulo = campos('As perguntas')['Título'];
+const intro = paragrafos(secao('As perguntas').blocos).map((linhas) => linhas.join(' '));
+const rotular = (id: string) => id.toUpperCase();
+---
+
+<section class="secao questionario" id="perguntas" aria-labelledby="perguntas-titulo">
+  <header class="grade questionario-topo">
+    <h2 class="titulo-secao questionario-titulo" id="perguntas-titulo">{titulo}</h2>
+    <div class="texto questionario-intro">
+      {intro.map((p) => <p>{p}</p>)}
+    </div>
+  </header>
+
+  <div class="questionario-corpo">
+    <Cantos posicao="vertice" />
+    <nav class="indice" aria-label="Partes do questionário">
+      <div class="indice-cabeca">
+        <p class="indice-total">
+          <span data-respondidas>0</span><span class="indice-de"> de {totalPerguntas}</span>
+        </p>
+        <p class="questionario-salvo" data-salvo aria-live="polite">Nada escrito ainda.</p>
+      </div>
+      <ol class="indice-lista">
+        {
+          partes.map((parte) => (
+            <li>
+              <a href={`#parte-${parte.id}`} data-indice={parte.id}>
+                <span class="indice-letra">{parte.letra}</span>
+                <span class="indice-nome">{parte.titulo}</span>
+                <span class="indice-conta" data-conta={parte.id}>
+                  0/{parte.perguntas.length}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+
+    <form class="formulario" data-formulario autocomplete="off" novalidate>
+      {
+        partes.map((parte, indice) => (
+          <section class="parte" id={`parte-${parte.id}`} aria-labelledby={`parte-${parte.id}-titulo`} data-parte={parte.id}>
+            <header class="parte-topo">
+              <span class="parte-letra" aria-hidden="true">
+                {parte.letra}
+              </span>
+              <div>
+                <h3 class="parte-titulo" id={`parte-${parte.id}-titulo`}>
+                  {parte.titulo}
+                </h3>
+                <p class="parte-sub">{parte.subtitulo}</p>
+              </div>
+            </header>
+
+            {parte.perguntas.map((q) => (
+              <div class="pergunta" data-pergunta={q.id} data-tipo={q.tipo ?? 'texto'}>
+                <p class="pergunta-cabeca">
+                  <span class="pergunta-numero">{rotular(q.id)}</span>
+                  <label class="pergunta-texto" for={`r-${q.id}`} id={`t-${q.id}`}>
+                    {q.texto}
+                  </label>
+                </p>
+                <p class="pergunta-porque" id={`p-${q.id}`}>
+                  <span class="rotulo">Por que eu pergunto</span> {q.porque}
+                </p>
+
+                {q.opcoes && q.tipo !== 'escolha' && (
+                  <div class="opcoes" role="group" aria-labelledby={`t-${q.id}`} data-multipla={q.id}>
+                    {q.opcoes.map((opcao) => (
+                      <button class="opcao" type="button" aria-pressed="false" data-valor={opcao}>
+                        {opcao}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {q.tipo === 'escolha' && q.opcoes && (
+                  <div class="opcoes" role="radiogroup" aria-labelledby={`t-${q.id}`} data-unica={q.id}>
+                    {q.opcoes.map((opcao, i) => (
+                      <button
+                        class="opcao"
+                        type="button"
+                        role="radio"
+                        aria-checked="false"
+                        tabindex={i === 0 ? '0' : '-1'}
+                        data-valor={opcao}
+                      >
+                        {opcao}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {q.tipo === 'inventario' && q.linhas && (
+                  <div class="inventario" role="table" aria-labelledby={`t-${q.id}`} data-inventario={q.id}>
+                    <div class="inventario-linha inventario-cabeca" role="row">
+                      <span role="columnheader">Função</span>
+                      <span role="columnheader">Onde a igreja usa hoje</span>
+                      <span role="columnheader">No aplicativo novo</span>
+                    </div>
+                    {q.linhas.map((linha) => (
+                      <div class="inventario-linha" role="row" data-linha={linha}>
+                        <span class="inventario-funcao" role="rowheader">
+                          {linha}
+                        </span>
+                        <span class="inventario-celula" role="cell">
+                          <span class="opcoes opcoes--compactas" role="group" aria-label={`${linha}: onde usa hoje`}>
+                            {q.usoHoje?.map((uso) => (
+                              <button class="opcao" type="button" aria-pressed="false" data-uso={uso}>
+                                {uso}
+                              </button>
+                            ))}
+                          </span>
+                        </span>
+                        <span class="inventario-celula" role="cell">
+                          <span class="opcoes opcoes--compactas" role="radiogroup" aria-label={`${linha}: no aplicativo novo`}>
+                            {q.importancia?.map((nivel, i) => (
+                              <button
+                                class="opcao"
+                                type="button"
+                                role="radio"
+                                aria-checked="false"
+                                tabindex={i === 0 ? '0' : '-1'}
+                                data-importancia={nivel}
+                              >
+                                {nivel}
+                              </button>
+                            ))}
+                          </span>
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {q.tipo === 'agenda' && (
+                  <div class="agenda" data-agenda={q.id}>
+                    <p class="agenda-rotulo rotulo" id={`dias-${q.id}`}>
+                      Dias
+                    </p>
+                    <div class="opcoes" role="group" aria-labelledby={`dias-${q.id}`} data-dias>
+                      {q.dias?.map((dia) => (
+                        <button class="opcao" type="button" aria-pressed="false" data-valor={dia}>
+                          {dia}
+                        </button>
+                      ))}
+                    </div>
+                    <p class="agenda-rotulo rotulo" id={`periodos-${q.id}`}>
+                      Período
+                    </p>
+                    <div class="opcoes" role="group" aria-labelledby={`periodos-${q.id}`} data-periodos>
+                      {q.periodos?.map((periodo) => (
+                        <button class="opcao" type="button" aria-pressed="false" data-valor={periodo}>
+                          {periodo}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <textarea
+                  class="resposta"
+                  id={`r-${q.id}`}
+                  name={q.id}
+                  rows={q.tipo === 'inventario' || q.tipo === 'escolha' || q.tipo === 'agenda' ? 2 : 3}
+                  aria-describedby={`p-${q.id}`}
+                  placeholder={
+                    q.tipo === 'inventario'
+                      ? 'Alguma observação sobre o quadro? (opcional)'
+                      : q.tipo === 'agenda'
+                        ? 'Se preferir, escreva datas e horários que funcionam.'
+                        : q.tipo === 'escolha'
+                          ? 'Quer comentar? (opcional)'
+                          : 'Escreva do seu jeito…'
+                  }
+                />
+              </div>
+            ))}
+
+            <nav class="parte-navegacao" aria-label={`Navegar a partir de ${parte.titulo}`}>
+              {indice > 0 ? (
+                <button class="botao botao--linha" type="button" data-ir-parte={partes[indice - 1].id}>
+                  Parte anterior
+                </button>
+              ) : (
+                <span />
+              )}
+              {indice < partes.length - 1 ? (
+                <button class="botao" type="button" data-ir-parte={partes[indice + 1].id}>
+                  Próxima: {partes[indice + 1].titulo}
+                </button>
+              ) : (
+                <a class="botao" href="#enviar">
+                  Terminei, quero enviar
+                </a>
+              )}
+            </nav>
+          </section>
+        ))
+      }
+    </form>
+  </div>
+</section>
+
+<style>
+  .questionario-topo {
+    row-gap: var(--s-4);
+    align-items: end;
+  }
+
+  .questionario-titulo {
+    grid-column: 1 / span 7;
+    align-self: start;
+  }
+
+  .questionario-intro {
+    grid-column: 9 / span 4;
+    color: var(--ink-soft);
+  }
+
+  .questionario-salvo {
+    margin: var(--s-1) 0 0;
+    font-family: var(--brand);
+    font-weight: 500;
+    font-size: var(--t-label);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .questionario-corpo {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(220px, 3fr) minmax(0, 9fr);
+    column-gap: var(--g);
+    margin-top: var(--s-7);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .questionario-corpo > :global(.cantos) {
+    z-index: 6;
+  }
+
+  .indice {
+    position: sticky;
+    top: 72px;
+    align-self: start;
+    padding-top: var(--s-4);
+  }
+
+  .indice-cabeca {
+    margin-bottom: var(--s-3);
+  }
+
+  .indice-total {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: var(--t-l);
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .indice-de {
+    font-size: 0.5em;
+  }
+
+  .indice-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .indice-lista a {
+    display: grid;
+    grid-template-columns: 2.2em 1fr auto;
+    align-items: baseline;
+    padding: var(--s-2) 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    font-size: var(--t-small);
+    transition:
+      background-color 0.2s var(--ease-out),
+      color 0.2s var(--ease-out),
+      padding 0.2s var(--ease-out);
+  }
+
+  .indice-lista a:hover,
+  .indice-lista a[aria-current='true'] {
+    padding-left: var(--s-2);
+    padding-right: var(--s-2);
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .indice-letra {
+    font-family: var(--serif);
+    font-size: 1.3em;
+  }
+
+  .indice-conta {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .formulario {
+    min-width: 0;
+    padding-bottom: var(--s-5);
+    padding-left: var(--s-6);
+    border-left: 1px solid var(--ink);
+  }
+
+  .parte {
+    padding: var(--s-6) 0 var(--s-4);
+    scroll-margin-top: 72px;
+  }
+
+  .parte + .parte {
+    border-top: 1px solid var(--ink);
+  }
+
+  .parte:last-child,
+  :global(.passo-a-passo) .parte.ativa {
+    padding-bottom: 0;
+  }
+
+  .parte-topo {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--s-4);
+    margin-bottom: var(--s-5);
+  }
+
+  .parte-letra {
+    font-family: var(--serif);
+    font-size: var(--t-mega);
+    line-height: 0.78;
+    letter-spacing: -0.04em;
+  }
+
+  .parte-titulo {
+    margin: 0.1em 0 0.2em;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--t-l);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+  }
+
+  .parte-sub {
+    margin: 0;
+    font-size: var(--t-body);
+    color: var(--ink-soft);
+  }
+
+  .pergunta {
+    padding: var(--s-5) 0;
+    border-top: 1px solid var(--rule);
+    scroll-margin-top: 96px;
+  }
+
+  .pergunta-cabeca {
+    display: grid;
+    grid-template-columns: clamp(52px, 4.4vw, 72px) 1fr;
+    gap: var(--s-3);
+    margin: 0;
+  }
+
+  .pergunta-numero {
+    display: inline-grid;
+    place-items: center;
+    align-self: start;
+    height: 1.9em;
+    margin-top: 0.2em;
+    border: 1px solid var(--ink);
+    font-family: var(--brand);
+    font-weight: 500;
+    font-size: var(--t-label);
+    letter-spacing: 0.1em;
+    transition:
+      background-color 0.35s var(--ease-out),
+      color 0.35s var(--ease-out);
+  }
+
+  .pergunta[data-respondida='true'] .pergunta-numero {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .pergunta-texto {
+    font-family: var(--serif);
+    font-size: var(--t-m);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+  }
+
+  .pergunta-porque,
+  .opcoes,
+  .inventario,
+  .agenda,
+  .resposta {
+    margin-left: calc(clamp(52px, 4.4vw, 72px) + var(--s-3));
+  }
+
+  .pergunta-porque {
+    max-width: 40em;
+    margin-top: var(--s-2);
+    margin-bottom: 0;
+    font-size: var(--t-small);
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  .pergunta-porque .rotulo {
+    margin-right: 0.6em;
+    color: var(--ink);
+  }
+
+  .opcoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1);
+    margin-top: var(--s-3);
+  }
+
+  .opcoes--compactas {
+    margin: 0;
+    gap: var(--s-1);
+  }
+
+  .opcoes--compactas .opcao {
+    min-height: 40px;
+    padding: 0 0.8em;
+    font-size: clamp(15px, 1.05vw, 16px);
+  }
+
+  .inventario {
+    display: grid;
+    grid-template-columns: minmax(9em, 1fr) auto auto;
+    column-gap: var(--s-4);
+    margin-top: var(--s-3);
+    border-top: 1px solid var(--ink);
+  }
+
+  .inventario-linha {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    align-items: center;
+    padding: var(--s-2) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .inventario-cabeca {
+    font-family: var(--brand);
+    font-weight: 500;
+    font-size: var(--t-label);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .inventario-funcao {
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.35;
+  }
+
+  .agenda {
+    margin-top: var(--s-3);
+  }
+
+  .agenda-rotulo {
+    margin: var(--s-3) 0 0;
+  }
+
+  .agenda .opcoes {
+    margin-left: 0;
+    margin-top: var(--s-1);
+  }
+
+  .resposta {
+    display: block;
+    width: calc(100% - clamp(52px, 4.4vw, 72px) - var(--s-3));
+    min-height: 4.8em;
+    margin-top: var(--s-3);
+    padding: var(--s-1) 0 var(--s-2);
+    border: 0;
+    border-bottom: 1px dashed var(--ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: var(--t-body);
+    line-height: 1.6;
+    resize: none;
+    field-sizing: content;
+    transition: border-color 0.2s var(--ease-out);
+  }
+
+  .resposta::placeholder {
+    color: #6b6b6b;
+  }
+
+  .resposta:focus {
+    outline: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    padding-bottom: calc(var(--s-2) - 1px);
+  }
+
+  .pergunta[data-respondida='true'] .resposta {
+    border-bottom-style: solid;
+  }
+
+
+  .parte-navegacao {
+    display: none;
+  }
+
+  :global(.passo-a-passo) .parte {
+    display: none;
+  }
+
+  :global(.passo-a-passo) .parte.ativa {
+    display: block;
+  }
+
+  :global(.passo-a-passo) .parte + .parte {
+    border-top: 0;
+  }
+
+  :global(.passo-a-passo) .parte-navegacao {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-2);
+    margin-top: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--ink);
+  }
+
+  @media (max-width: 860px) {
+    :global(.passo-a-passo) .parte-navegacao {
+      flex-direction: column-reverse;
+    }
+
+    .parte-navegacao > span:empty {
+      display: none;
+    }
+
+    :global(.passo-a-passo) .parte-navegacao .botao {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .questionario-titulo,
+    .questionario-intro {
+      grid-column: 1 / -1;
+    }
+
+    .questionario-corpo {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .indice {
+      position: static;
+    }
+
+    .indice {
+      min-width: 0;
+      position: sticky;
+      top: 56px;
+      z-index: 5;
+      margin: 0 calc(var(--m) * -1);
+      padding: var(--s-2) var(--m);
+      background: var(--paper);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .indice-cabeca {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--s-2);
+      margin-bottom: var(--s-1);
+    }
+
+    .indice-total {
+      font-size: 26px;
+    }
+
+    .questionario-salvo {
+      margin: 0;
+      text-align: right;
+    }
+
+    .indice-lista {
+      display: flex;
+      gap: var(--s-1);
+      margin-inline: calc(var(--m) * -1);
+      padding-inline: var(--m);
+      scroll-padding-inline: var(--m);
+      overflow-x: auto;
+      border-top: 0;
+      scrollbar-width: none;
+    }
+
+    .indice-lista a {
+      grid-template-columns: auto;
+      justify-items: center;
+      min-width: 48px;
+      padding: var(--s-1);
+      border: 1px solid var(--ink);
+    }
+
+    .indice-lista a:hover,
+    .indice-lista a[aria-current='true'] {
+      padding-left: var(--s-1);
+      padding-right: var(--s-1);
+    }
+
+    .indice-nome {
+      display: none;
+    }
+
+    .indice-conta {
+      font-size: 12px;
+    }
+
+    .formulario {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .pergunta-cabeca {
+      grid-template-columns: 46px 1fr;
+      gap: var(--s-2);
+    }
+
+    .pergunta-numero {
+      height: 30px;
+      margin-top: 0.15em;
+      font-size: 13px;
+    }
+
+    .pergunta-porque,
+    .opcoes,
+    .inventario,
+    .agenda,
+    .resposta {
+      margin-left: 0;
+    }
+
+    .resposta {
+      width: 100%;
+    }
+
+    .inventario-cabeca {
+      display: none;
+    }
+
+    .inventario {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .inventario-linha {
+      row-gap: var(--s-2);
+      padding: var(--s-2) 0;
+    }
+  }
+</style>

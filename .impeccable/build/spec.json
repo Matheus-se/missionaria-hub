@@ -1,0 +1,918 @@
+{
+  "tool": "comp-spec",
+  "version": 1,
+  "createdAt": "2026-11-10T03:43:40.095Z",
+  "comp": ".impeccable/mocks/comp-b1-abertura.png",
+  "warnings": [
+    "region simbolo-losango: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region simbolo-chevron: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region simbolo-coracao: \"codeDrawn\": true set in the regions file (the painted-material refusal is overridden: code draws this region)",
+    "region simbolo-coracao: \"bleed\": true set in the regions file (the clipped-artwork refusal is overridden: the page crops it there)"
+  ],
+  "uncoveredInkCells": [
+    "C0",
+    "D0",
+    "E0",
+    "F0",
+    "G3",
+    "G5",
+    "A6",
+    "A7"
+  ],
+  "compSize": {
+    "width": 1280,
+    "height": 720
+  },
+  "aspect": 1.7778,
+  "orientation": "landscape",
+  "palette": [
+    {
+      "hex": "#f8f8f8",
+      "coverage": 0.7653
+    },
+    {
+      "hex": "#080808",
+      "coverage": 0.2163
+    },
+    {
+      "hex": "#484848",
+      "coverage": 0.0103
+    },
+    {
+      "hex": "#b1b1b1",
+      "coverage": 0.0052
+    },
+    {
+      "hex": "#777777",
+      "coverage": 0.0028
+    }
+  ],
+  "bands": [
+    {
+      "y": 0.0139,
+      "strength": 0.266
+    },
+    {
+      "y": 0.0556,
+      "strength": 0.3878
+    },
+    {
+      "y": 0.3194,
+      "strength": 0.381
+    },
+    {
+      "y": 0.3611,
+      "strength": 0.6592
+    },
+    {
+      "y": 0.4167,
+      "strength": 0.4583
+    },
+    {
+      "y": 0.4583,
+      "strength": 0.3988
+    },
+    {
+      "y": 0.5139,
+      "strength": 0.3887
+    },
+    {
+      "y": 0.5694,
+      "strength": 0.3903
+    },
+    {
+      "y": 0.625,
+      "strength": 0.4629
+    },
+    {
+      "y": 0.6528,
+      "strength": 0.4348
+    },
+    {
+      "y": 0.7083,
+      "strength": 0.6428
+    },
+    {
+      "y": 0.7917,
+      "strength": 0.6739
+    },
+    {
+      "y": 0.9028,
+      "strength": 1
+    }
+  ],
+  "regions": [
+    {
+      "id": "masthead-mark",
+      "kind": "chrome",
+      "note": "small flat black Missionária symbol at the left of the masthead",
+      "grid": null,
+      "box": {
+        "x": 0.0469,
+        "y": 0.025,
+        "w": 0.0359,
+        "h": 0.0778
+      },
+      "px": {
+        "x": 60,
+        "y": 18,
+        "w": 46,
+        "h": 56
+      },
+      "aspect": 0.8214,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.7533
+        },
+        {
+          "hex": "#090909",
+          "coverage": 0.1678
+        },
+        {
+          "hex": "#898989",
+          "coverage": 0.0362
+        },
+        {
+          "hex": "#bebebe",
+          "coverage": 0.0263
+        },
+        {
+          "hex": "#525252",
+          "coverage": 0.0164
+        }
+      ],
+      "detail": {
+        "energy": 11.1737
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "masthead-name",
+      "kind": "text",
+      "note": "MISSIONÁRIA HUB set in wide black caps, the product name",
+      "grid": null,
+      "box": {
+        "x": 0.0883,
+        "y": 0.0472,
+        "w": 0.1461,
+        "h": 0.0333
+      },
+      "px": {
+        "x": 113,
+        "y": 34,
+        "w": 187,
+        "h": 24
+      },
+      "aspect": 7.7917,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.7833
+        },
+        {
+          "hex": "#0c0c0c",
+          "coverage": 0.1511
+        },
+        {
+          "hex": "#797979",
+          "coverage": 0.0398
+        },
+        {
+          "hex": "#c3c3c3",
+          "coverage": 0.0179
+        },
+        {
+          "hex": "#484848",
+          "coverage": 0.008
+        }
+      ],
+      "detail": {
+        "energy": 68.1048
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 14,
+          "capHeightPx": 16,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5776,
+          "advTall": 0.6869,
+          "advX": 0.562,
+          "gap": 0.2498,
+          "xRatio": 0.764,
+          "stemW": 0.1568,
+          "contrast": 0.9762,
+          "serif": 0.4418,
+          "densTall": 0.406,
+          "densX": 0.5889,
+          "weight": 0.406
+        },
+        "widthClass": "condensed",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "nav-vimos",
+      "kind": "control",
+      "note": "navigation link O que vimos in small black grotesk",
+      "grid": null,
+      "box": {
+        "x": 0.2953,
+        "y": 0.0514,
+        "w": 0.0703,
+        "h": 0.0319
+      },
+      "px": {
+        "x": 378,
+        "y": 37,
+        "w": 90,
+        "h": 23
+      },
+      "aspect": 3.913,
+      "palette": [
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.7941
+        },
+        {
+          "hex": "#121211",
+          "coverage": 0.0882
+        },
+        {
+          "hex": "#c7c7c7",
+          "coverage": 0.063
+        },
+        {
+          "hex": "#535351",
+          "coverage": 0.0378
+        },
+        {
+          "hex": "#888888",
+          "coverage": 0.0168
+        }
+      ],
+      "detail": {
+        "energy": 34.8791
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "nav-funciona",
+      "kind": "control",
+      "note": "navigation link Como funciona in small black grotesk",
+      "grid": null,
+      "box": {
+        "x": 0.3875,
+        "y": 0.0514,
+        "w": 0.0852,
+        "h": 0.0319
+      },
+      "px": {
+        "x": 496,
+        "y": 37,
+        "w": 109,
+        "h": 23
+      },
+      "aspect": 4.7391,
+      "palette": [
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.8007
+        },
+        {
+          "hex": "#111111",
+          "coverage": 0.0743
+        },
+        {
+          "hex": "#bebebf",
+          "coverage": 0.0439
+        },
+        {
+          "hex": "#4f4f4f",
+          "coverage": 0.0405
+        },
+        {
+          "hex": "#8c8c8c",
+          "coverage": 0.0405
+        }
+      ],
+      "detail": {
+        "energy": 41.6389
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 10,
+          "capHeightPx": 12.1,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.7179,
+          "advTall": 0.8284,
+          "advX": 0.7179,
+          "gap": 0.0552,
+          "xRatio": 0.6869,
+          "stemW": 0.1712,
+          "contrast": 0.9824,
+          "serif": 0.4174,
+          "densTall": 0.4318,
+          "densX": 0.5507,
+          "weight": 0.4318
+        },
+        "widthClass": "normal",
+        "weightClass": "regular"
+      }
+    },
+    {
+      "id": "nav-perguntas",
+      "kind": "control",
+      "note": "navigation link Perguntas in small black grotesk",
+      "grid": null,
+      "box": {
+        "x": 0.4961,
+        "y": 0.0514,
+        "w": 0.0578,
+        "h": 0.0319
+      },
+      "px": {
+        "x": 635,
+        "y": 37,
+        "w": 74,
+        "h": 23
+      },
+      "aspect": 3.2174,
+      "palette": [
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.8384
+        },
+        {
+          "hex": "#141414",
+          "coverage": 0.0758
+        },
+        {
+          "hex": "#bdbdbd",
+          "coverage": 0.0455
+        },
+        {
+          "hex": "#646464",
+          "coverage": 0.0202
+        },
+        {
+          "hex": "#404040",
+          "coverage": 0.0202
+        }
+      ],
+      "detail": {
+        "energy": 32.0214
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "nav-conversa",
+      "kind": "control",
+      "note": "navigation link Conversa in small black grotesk",
+      "grid": null,
+      "box": {
+        "x": 0.5758,
+        "y": 0.0514,
+        "w": 0.0547,
+        "h": 0.0319
+      },
+      "px": {
+        "x": 737,
+        "y": 37,
+        "w": 70,
+        "h": 23
+      },
+      "aspect": 3.0435,
+      "palette": [
+        {
+          "hex": "#f7f7f7",
+          "coverage": 0.8063
+        },
+        {
+          "hex": "#0e0e0e",
+          "coverage": 0.0995
+        },
+        {
+          "hex": "#9f9f9f",
+          "coverage": 0.0471
+        },
+        {
+          "hex": "#454545",
+          "coverage": 0.0262
+        },
+        {
+          "hex": "#d0d0d0",
+          "coverage": 0.0209
+        }
+      ],
+      "detail": {
+        "energy": 28.4994
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "note": "three-line didone headline: Pastor, antes de começar o aplicativo, a gente precisa ouvir o senhor.",
+      "grid": null,
+      "box": {
+        "x": 0.05,
+        "y": 0.2819,
+        "w": 0.5313,
+        "h": 0.3111
+      },
+      "px": {
+        "x": 64,
+        "y": 203,
+        "w": 680,
+        "h": 224
+      },
+      "aspect": 3.0357,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.8345
+        },
+        {
+          "hex": "#0a0a0a",
+          "coverage": 0.1338
+        },
+        {
+          "hex": "#a8a8a8",
+          "coverage": 0.0149
+        },
+        {
+          "hex": "#5f5f5f",
+          "coverage": 0.0138
+        },
+        {
+          "hex": "#383838",
+          "coverage": 0.0031
+        }
+      ],
+      "detail": {
+        "energy": 81.2625
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 3,
+          "glyphs": 51,
+          "capHeightPx": 47.6,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5702,
+          "advTall": 0.7229,
+          "advX": 0.5838,
+          "gap": 0.0618,
+          "xRatio": 0.6606,
+          "stemW": 0.1483,
+          "contrast": 2.3976,
+          "serif": 1.5398,
+          "densTall": 0.3784,
+          "densX": 0.4363,
+          "weight": 0.3784
+        },
+        "widthClass": "condensed",
+        "weightClass": "regular",
+        "chosen": {
+          "family": "Prata",
+          "weight": 400,
+          "fontSizePx": 58,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 20,
+            "capHeightPx": 47.5,
+            "inkIsDark": true,
+            "allCaps": false,
+            "advance": 0.6105,
+            "advTall": 0.7263,
+            "advX": 0.6105,
+            "gap": 0.0842,
+            "xRatio": 0.6556,
+            "stemW": 0.1349,
+            "contrast": 2.3976,
+            "serif": null,
+            "densTall": 0.3581,
+            "densX": 0.4212,
+            "weight": 0.3581
+          },
+          "stamp": "abda3ad0f832"
+        }
+      }
+    },
+    {
+      "id": "subline",
+      "kind": "text",
+      "note": "one plain grotesk line: São 37 perguntas, uns 45 minutos. Dá para parar e continuar depois.",
+      "grid": null,
+      "box": {
+        "x": 0.0516,
+        "y": 0.6194,
+        "w": 0.5047,
+        "h": 0.0389
+      },
+      "px": {
+        "x": 66,
+        "y": 446,
+        "w": 646,
+        "h": 28
+      },
+      "aspect": 23.0714,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.7833
+        },
+        {
+          "hex": "#0b0b0b",
+          "coverage": 0.135
+        },
+        {
+          "hex": "#c1c1c1",
+          "coverage": 0.0367
+        },
+        {
+          "hex": "#4b4b4b",
+          "coverage": 0.0237
+        },
+        {
+          "hex": "#818181",
+          "coverage": 0.0213
+        }
+      ],
+      "detail": {
+        "energy": 92.0921
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 1,
+          "glyphs": 53,
+          "capHeightPx": 16,
+          "inkIsDark": true,
+          "allCaps": false,
+          "advance": 0.5923,
+          "advTall": 0.5611,
+          "advX": 0.5923,
+          "gap": 0.0935,
+          "xRatio": 0.7361,
+          "stemW": 0.1607,
+          "contrast": 1.0572,
+          "serif": 0.5403,
+          "densTall": 0.4985,
+          "densX": 0.5472,
+          "weight": 0.4985
+        },
+        "widthClass": "normal",
+        "weightClass": "medium",
+        "chosen": {
+          "family": "Catamaran",
+          "weight": 400,
+          "fontSizePx": 22,
+          "source": "index",
+          "fp": {
+            "lines": 1,
+            "glyphs": 26,
+            "capHeightPx": 16,
+            "inkIsDark": true,
+            "allCaps": false,
+            "advance": 0.578,
+            "advTall": 0.4061,
+            "advX": 0.5936,
+            "gap": 0.1093,
+            "xRatio": 0.708,
+            "stemW": 0.1514,
+            "contrast": 1.0818,
+            "serif": 1.1998,
+            "densTall": 0.5099,
+            "densX": 0.5427,
+            "weight": 0.5099
+          },
+          "stamp": "15bab76e770b"
+        }
+      }
+    },
+    {
+      "id": "cta",
+      "kind": "control",
+      "note": "solid black button with white label Começar as perguntas",
+      "grid": null,
+      "box": {
+        "x": 0.0516,
+        "y": 0.7028,
+        "w": 0.2031,
+        "h": 0.0944
+      },
+      "px": {
+        "x": 66,
+        "y": 506,
+        "w": 260,
+        "h": 68
+      },
+      "aspect": 3.8235,
+      "palette": [
+        {
+          "hex": "#090909",
+          "coverage": 0.8288
+        },
+        {
+          "hex": "#f6f6f6",
+          "coverage": 0.1451
+        },
+        {
+          "hex": "#4e4e4e",
+          "coverage": 0.0125
+        },
+        {
+          "hex": "#a0a0a0",
+          "coverage": 0.011
+        },
+        {
+          "hex": "#c8c8c8",
+          "coverage": 0.0025
+        }
+      ],
+      "detail": {
+        "energy": 48.9396
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      },
+      "type": {
+        "comp": {
+          "lines": 2,
+          "glyphs": 2,
+          "capHeightPx": 3.4,
+          "inkIsDark": false,
+          "allCaps": true,
+          "advance": 76.2153,
+          "advTall": 78.1449,
+          "advX": null,
+          "gap": 0,
+          "xRatio": null,
+          "stemW": null,
+          "contrast": null,
+          "serif": null,
+          "densTall": 0.9801,
+          "densX": null,
+          "weight": 0.9801
+        },
+        "widthClass": "wide",
+        "weightClass": "black"
+      }
+    },
+    {
+      "id": "faixa-preta",
+      "kind": "chrome",
+      "note": "top edge of the next full-bleed black section; the box stops at x 1252 to leave out the image generator watermark in the bottom-right corner (comp defect)",
+      "grid": null,
+      "box": {
+        "x": 0,
+        "y": 0.9111,
+        "w": 0.9781,
+        "h": 0.0889
+      },
+      "px": {
+        "x": 0,
+        "y": 656,
+        "w": 1252,
+        "h": 64
+      },
+      "aspect": 19.5625,
+      "palette": [
+        {
+          "hex": "#080808",
+          "coverage": 1
+        }
+      ],
+      "detail": {
+        "energy": 0.5242
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": true,
+        "rules": false
+      }
+    },
+    {
+      "id": "simbolo-losango",
+      "kind": "chrome",
+      "note": "diamond, top piece of the official Missionária logo symbol, a solid flat black shape set in the SVG logo; moves on its own in the signature interaction",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.8,
+        "y": 0.05,
+        "w": 0.0844,
+        "h": 0.15
+      },
+      "px": {
+        "x": 1024,
+        "y": 36,
+        "w": 108,
+        "h": 108
+      },
+      "aspect": 1,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.5926
+        },
+        {
+          "hex": "#090909",
+          "coverage": 0.3935
+        },
+        {
+          "hex": "#636363",
+          "coverage": 0.01
+        },
+        {
+          "hex": "#3c3c3c",
+          "coverage": 0.0031
+        },
+        {
+          "hex": "#888888",
+          "coverage": 0.0008
+        }
+      ],
+      "detail": {
+        "energy": 7.5154
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "simbolo-chevron",
+      "kind": "chrome",
+      "note": "chevron, middle piece of the official Missionária logo symbol, a solid flat black shape set in the SVG logo; moves on its own in the signature interaction",
+      "grid": null,
+      "codeDrawn": true,
+      "box": {
+        "x": 0.7203,
+        "y": 0.1931,
+        "w": 0.2437,
+        "h": 0.2889
+      },
+      "px": {
+        "x": 922,
+        "y": 139,
+        "w": 312,
+        "h": 208
+      },
+      "aspect": 1.5,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.6192
+        },
+        {
+          "hex": "#080808",
+          "coverage": 0.3683
+        },
+        {
+          "hex": "#414141",
+          "coverage": 0.0073
+        },
+        {
+          "hex": "#7b7b7b",
+          "coverage": 0.0034
+        },
+        {
+          "hex": "#bdbdbd",
+          "coverage": 0.0018
+        }
+      ],
+      "detail": {
+        "energy": 12.1227
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    },
+    {
+      "id": "simbolo-coracao",
+      "kind": "chrome",
+      "note": "heart, bottom piece of the official Missionária logo symbol, a solid flat black shape set in the SVG logo, cropped by the right edge; moves on its own in the signature interaction",
+      "grid": null,
+      "codeDrawn": true,
+      "bleed": true,
+      "box": {
+        "x": 0.6586,
+        "y": 0.3403,
+        "w": 0.3414,
+        "h": 0.5528
+      },
+      "px": {
+        "x": 843,
+        "y": 245,
+        "w": 437,
+        "h": 398
+      },
+      "aspect": 1.098,
+      "palette": [
+        {
+          "hex": "#f8f8f8",
+          "coverage": 0.6539
+        },
+        {
+          "hex": "#080808",
+          "coverage": 0.3427
+        },
+        {
+          "hex": "#484848",
+          "coverage": 0.0029
+        },
+        {
+          "hex": "#787878",
+          "coverage": 0.0005
+        }
+      ],
+      "detail": {
+        "energy": 12.6173
+      },
+      "medium": "semantic",
+      "plate": null,
+      "text": null,
+      "surface": {
+        "flat": false,
+        "rules": false
+      }
+    }
+  ],
+  "compSha256": "382a3372daca50c03610b6b3f760bfc53760ac95c8db60a5885526ebf6aa6544",
+  "regionsSource": {
+    "path": ".impeccable/build/regions.json",
+    "sha256": "bc75290ad106e57308ef17881b6628702f0a5938d6733c19e2264d5c49dd7e1c"
+  }
+}

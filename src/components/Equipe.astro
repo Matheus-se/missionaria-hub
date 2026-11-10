@@ -1,0 +1,292 @@
+---
+import Cantos from './Cantos.astro';
+import { paragrafos, subsecoes } from '../lib/conteudo';
+
+const grupo = subsecoes('Como um aplicativo é feito').find((g) => g.titulo === 'Como a equipe se organiza');
+if (!grupo) throw new Error('Falta "### Como a equipe se organiza" em conteudo/textos.md');
+
+const textos = paragrafos(grupo.blocos).map((linhas) => linhas.join(' '));
+const listas = grupo.blocos.filter((b) => b.tipo === 'ul') as { tipo: 'ul'; itens: string[] }[];
+const encontros = listas[0]?.itens ?? [];
+const funcoes = listas[1]?.itens ?? [];
+
+const nomesEncontros = ['Planejamento', 'Conversa diária', 'Revisão', 'Retrospectiva'];
+const nomesFuncoes = ['Dono do produto', 'Requisitos', 'Desenho das telas', 'Programação', 'Testes', 'Coordenação'];
+const dias = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
+const marcados: number[][] = [[0], dias.map((_, i) => i), [9], [9]];
+const semanas = [
+  [0, 1, 2, 3, 4],
+  [5, 6, 7, 8, 9],
+];
+---
+
+<section class="secao secao--preta equipe" id="equipe" aria-labelledby="equipe-titulo">
+  <Cantos />
+  <header class="grade equipe-topo">
+    <h2 class="titulo-secao equipe-titulo" id="equipe-titulo">Como a equipe se organiza</h2>
+    <p class="texto equipe-intro">{textos[0]}</p>
+  </header>
+
+  <figure class="ciclo" aria-labelledby="ciclo-legenda">
+    <div class="ciclo-grade ciclo-grade--completa" role="table" aria-label="Encontros em um ciclo de duas semanas">
+      <div class="ciclo-linha ciclo-cabeca" role="row">
+        <span class="ciclo-nome" role="columnheader"><span class="visually-hidden">Encontro</span></span>
+        {
+          dias.map((dia, i) => (
+            <span class:list={['ciclo-dia', { 'ciclo-semana': i === 5 }]} role="columnheader">
+              {dia}
+            </span>
+          ))
+        }
+      </div>
+      {
+        nomesEncontros.map((nome, linha) => (
+          <div class="ciclo-linha" role="row" data-encontro={linha}>
+            <span class="ciclo-nome rotulo" role="rowheader">
+              {nome}
+            </span>
+            {dias.map((dia, i) => (
+              <span class:list={['ciclo-celula', { 'ciclo-semana': i === 5 }]} role="cell">
+                {marcados[linha].includes(i) ? (
+                  <span class="ciclo-marca" data-dia={i}>
+                    <span class="visually-hidden">sim, {dia}</span>
+                  </span>
+                ) : null}
+              </span>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+    {
+      semanas.map((indices, s) => (
+        <div class="ciclo-grade ciclo-grade--semana" role="table" aria-label={`Encontros na semana ${s + 1} do ciclo`}>
+          <div class="ciclo-linha ciclo-cabeca" role="row">
+            <span class="ciclo-nome rotulo" role="columnheader">
+              Semana {s + 1}
+            </span>
+            {indices.map((i) => (
+              <span class="ciclo-dia" role="columnheader">
+                {dias[i]}
+              </span>
+            ))}
+          </div>
+          {nomesEncontros.map((nome, linha) => (
+            <div class="ciclo-linha" role="row" data-encontro={linha}>
+              <span class="ciclo-nome rotulo" role="rowheader">
+                {nome}
+              </span>
+              {indices.map((i) => (
+                <span class="ciclo-celula" role="cell">
+                  {marcados[linha].includes(i) ? (
+                    <span class="ciclo-marca" data-dia={i}>
+                      <span class="visually-hidden">sim, {dias[i]}</span>
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      ))
+    }
+    <figcaption class="ciclo-legenda" id="ciclo-legenda">Um ciclo de duas semanas, de segunda a sexta.</figcaption>
+  </figure>
+
+  <ul class="encontros">
+    {
+      encontros.map((texto, i) => (
+        <li class="encontro">
+          <span class="rotulo">{nomesEncontros[i]}</span>
+          <p>{texto}</p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="grade fabrica">
+    <p class="citacao fabrica-texto">{textos[1]}</p>
+    <dl class="expediente">
+      {
+        funcoes.map((texto, i) => (
+          <div class="expediente-item">
+            <dt class="rotulo">{nomesFuncoes[i] ?? `Função ${i + 1}`}</dt>
+            <dd>{texto}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="texto fabrica-fecho">{textos[2]}</p>
+  </div>
+</section>
+
+<style>
+  .equipe-topo {
+    row-gap: var(--s-4);
+    align-items: end;
+  }
+
+  .equipe-titulo {
+    grid-column: 1 / span 7;
+    align-self: start;
+  }
+
+  .equipe-intro {
+    grid-column: 9 / span 4;
+    margin: 0;
+  }
+
+  .ciclo {
+    margin: var(--s-7) 0 0;
+  }
+
+  .ciclo-grade {
+    display: grid;
+    border-top: 1px solid var(--paper);
+  }
+
+  .ciclo-grade--semana {
+    display: none;
+  }
+
+  .ciclo-linha {
+    display: grid;
+    grid-template-columns: minmax(150px, 2.2fr) repeat(10, minmax(0, 1fr));
+    align-items: center;
+    min-height: clamp(52px, 5vw, 84px);
+    border-bottom: 1px solid var(--rule-claro);
+  }
+
+  .ciclo-cabeca {
+    min-height: 44px;
+    border-bottom-color: var(--paper);
+  }
+
+  .ciclo-dia {
+    font-family: var(--brand);
+    font-weight: 500;
+    font-size: var(--t-label);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .ciclo-celula {
+    display: grid;
+    place-items: center;
+    height: 100%;
+  }
+
+  .ciclo-semana {
+    border-left: 1px solid var(--paper);
+  }
+
+  .ciclo-marca {
+    width: clamp(12px, 1.1vw, 18px);
+    aspect-ratio: 1;
+    background: var(--paper);
+    rotate: 45deg;
+  }
+
+  .ciclo-legenda {
+    margin-top: var(--s-2);
+    font-size: var(--t-small);
+  }
+
+  .encontros {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--g);
+    margin: var(--s-6) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .encontro p {
+    margin: 0.9em 0 0;
+    font-size: var(--t-body);
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .fabrica {
+    margin-top: var(--s-7);
+    row-gap: var(--s-5);
+  }
+
+  .fabrica-texto {
+    grid-column: 1 / span 6;
+  }
+
+  .expediente {
+    grid-column: 8 / span 5;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: var(--g);
+    margin: 0;
+    border-top: 1px solid var(--paper);
+  }
+
+  .expediente-item {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+    padding: var(--s-3) 0;
+    border-bottom: 1px solid var(--rule-claro);
+  }
+
+  .expediente-item dt {
+    padding-top: 0.35em;
+  }
+
+  .expediente-item dd {
+    margin: 0;
+    font-size: var(--t-body);
+    line-height: 1.5;
+  }
+
+  .fabrica-fecho {
+    grid-column: 8 / span 5;
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .equipe-titulo,
+    .equipe-intro,
+    .fabrica-texto,
+    .expediente,
+    .fabrica-fecho {
+      grid-column: 1 / -1;
+    }
+
+    .ciclo-grade--completa {
+      display: none;
+    }
+
+    .ciclo-grade--semana {
+      display: grid;
+    }
+
+    .ciclo-grade--semana + .ciclo-grade--semana {
+      margin-top: var(--s-5);
+    }
+
+    .ciclo-grade--semana .ciclo-linha {
+      grid-template-columns: auto repeat(5, minmax(0, 1fr));
+      column-gap: var(--s-2);
+    }
+
+    .encontros {
+      grid-template-columns: 1fr;
+      row-gap: var(--s-4);
+    }
+
+    .expediente {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .expediente-item {
+      row-gap: var(--s-1);
+    }
+  }
+</style>

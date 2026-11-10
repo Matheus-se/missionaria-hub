@@ -1,0 +1,78 @@
+---
+/* Preenchido pelo script de respostas antes de imprimir. Só aparece no PDF. */
+---
+
+<section class="relatorio" data-relatorio aria-hidden="true"></section>
+
+<style is:global>
+  .relatorio {
+    display: none;
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 18mm 16mm 20mm;
+    }
+
+    body > *:not(.relatorio),
+    main {
+      display: none !important;
+    }
+
+    body {
+      background: #fff;
+    }
+
+    .relatorio {
+      display: block;
+      color: #000;
+      font-family: var(--sans);
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+
+    .relatorio h1 {
+      margin: 0 0 4pt;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 26pt;
+      line-height: 1.1;
+    }
+
+    .relatorio .relatorio-data {
+      margin: 0 0 18pt;
+      font-size: 10pt;
+    }
+
+    .relatorio h2 {
+      margin: 22pt 0 8pt;
+      padding-top: 8pt;
+      border-top: 0.75pt solid #000;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 16pt;
+      break-after: avoid;
+    }
+
+    .relatorio .item {
+      margin: 0 0 12pt;
+      break-inside: avoid;
+    }
+
+    .relatorio .item-pergunta {
+      margin: 0 0 3pt;
+      font-weight: 600;
+    }
+
+    .relatorio .item-resposta {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .relatorio .item-vazia {
+      margin: 0;
+      font-style: italic;
+    }
+  }
+</style>

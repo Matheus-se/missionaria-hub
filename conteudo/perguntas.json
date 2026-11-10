@@ -1,0 +1,322 @@
+{
+  "partes": [
+    {
+      "id": "visao",
+      "letra": "A",
+      "titulo": "A visão",
+      "subtitulo": "Por que um aplicativo nosso",
+      "perguntas": [
+        {
+          "id": "a1",
+          "texto": "Se o Missionária HUB ficasse pronto amanhã, qual seria a primeira coisa que o senhor faria nele?",
+          "porque": "Geralmente é a primeira tela que a gente desenha."
+        },
+        {
+          "id": "a2",
+          "texto": "Daqui a um ano, o que precisaria ter acontecido para o senhor dizer “valeu a pena”? Pense em pessoas e situações da igreja, não em telas.",
+          "porque": "É com isso que a gente vai saber, lá na frente, se o projeto deu certo."
+        },
+        {
+          "id": "a3",
+          "texto": "Para quem o aplicativo é, antes de tudo? Se tivesse de escolher um só grupo para atender muito bem, qual seria, e por quê?",
+          "porque": "Quem vem primeiro define o tamanho da letra, a ordem das telas e o que pode ficar para depois.",
+          "opcoes": [
+            "Membros",
+            "Visitantes",
+            "Líderes de célula",
+            "Ministérios",
+            "Secretaria",
+            "Tesouraria",
+            "Pastores"
+          ]
+        },
+        {
+          "id": "a4",
+          "texto": "Além de economizar com as mensalidades, que outros motivos fizeram o senhor querer um aplicativo próprio?",
+          "porque": "Se o motivo principal for economia, por exemplo, a gente começa pelo que hoje sai mais caro."
+        },
+        {
+          "id": "a5",
+          "texto": "Existe algum aplicativo, de igreja ou não, que o senhor admira pela facilidade? O que ele faz bem?",
+          "porque": "Um exemplo que o senhor já usa ajuda mais do que qualquer explicação minha."
+        }
+      ]
+    },
+    {
+      "id": "eklesia",
+      "letra": "B",
+      "titulo": "O Eklesia",
+      "subtitulo": "O que os irmãos mais velhos preferem",
+      "perguntas": [
+        {
+          "id": "b1",
+          "texto": "Há quanto tempo a igreja usa o Eklesia, e quem usa no dia a dia? Pense na secretaria, nos líderes e nos membros.",
+          "porque": "Eu sei o que o sistema oferece. Falta saber o que a igreja usa de fato."
+        },
+        {
+          "id": "b2",
+          "texto": "O senhor comentou que os irmãos mais velhos preferem o Eklesia. O que eles fazem lá? Se puder, conte de uma pessoa e do que ela faz quando abre o aplicativo.",
+          "porque": "Entender por que é fácil para eles é o mais importante do projeto inteiro."
+        },
+        {
+          "id": "b3",
+          "texto": "O que o Eklesia faz que o InPeace não faz, ou faz pior?",
+          "porque": "Isso não pode faltar no aplicativo novo."
+        },
+        {
+          "id": "b4",
+          "texto": "O que mais incomoda no Eklesia, para o senhor e para quem o senhor ouve reclamar?",
+          "porque": "Nas lojas, a reclamação mais comum é de senha que para de funcionar depois de atualizar. Quero saber se acontece aqui também."
+        },
+        {
+          "id": "b5",
+          "texto": "Se o Eklesia saísse do ar amanhã, o que faria falta já na primeira semana?",
+          "porque": "Ajuda a separar o que é essencial do que é só costume."
+        }
+      ]
+    },
+    {
+      "id": "inpeace",
+      "letra": "C",
+      "titulo": "O InPeace",
+      "subtitulo": "O que o senhor prefere",
+      "perguntas": [
+        {
+          "id": "c1",
+          "texto": "O senhor prefere o InPeace porque ele tem de tudo. Quais funções dele o senhor usa toda semana, e quais nunca usou?",
+          "porque": "Pagar por tudo sai caro. Quero construir o que a igreja usa, não a lista inteira."
+        },
+        {
+          "id": "c2",
+          "texto": "Qual foi o momento em que o InPeace mais ajudou o senhor ou a igreja? Conte como foi.",
+          "porque": "Uma história real mostra melhor o valor de uma função do que o site do InPeace."
+        },
+        {
+          "id": "c3",
+          "texto": "O que é difícil ou confuso no InPeace, tanto no painel de gestão quanto no aplicativo dos membros?",
+          "porque": "É onde o aplicativo novo pode ser melhor desde o primeiro dia."
+        },
+        {
+          "id": "c4",
+          "texto": "Quanto a igreja paga hoje por mês no InPeace e no Eklesia? Se souber, inclua as taxas de doações e de ingressos.",
+          "porque": "Com o custo de hoje, dá para decidir o que construir primeiro e o que manter por mais tempo."
+        },
+        {
+          "id": "c5",
+          "texto": "Quando vence ou renova o contrato de cada um? Existe multa ou aviso prévio para cancelar?",
+          "porque": "A data de renovação pode virar o nosso prazo."
+        }
+      ]
+    },
+    {
+      "id": "inventario",
+      "letra": "D",
+      "titulo": "O inventário",
+      "subtitulo": "Função por função",
+      "perguntas": [
+        {
+          "id": "d1",
+          "tipo": "inventario",
+          "texto": "Para cada função abaixo, marque onde a igreja usa hoje e quanto ela importa no aplicativo novo.",
+          "porque": "Em poucos minutos, este quadro mostra o tamanho do projeto. Pode deixar em branco o que não souber.",
+          "linhas": [
+            "Cadastro de membros e visitantes",
+            "Agenda de cultos e eventos",
+            "Culto ao vivo",
+            "Mensagens e pregações em vídeo",
+            "Devocional e plano de leitura",
+            "Bíblia",
+            "Pedidos de oração",
+            "Pedido de visita pastoral",
+            "Células e pequenos grupos",
+            "Ministérios e escalas de voluntários",
+            "Escola bíblica e cursos",
+            "Ministério infantil com check-in",
+            "Eventos com inscrição ou ingresso",
+            "Dízimos e ofertas online",
+            "Financeiro e relatórios",
+            "Notificações no celular",
+            "Notícias e avisos",
+            "Aniversariantes",
+            "Carteirinha de membro",
+            "Site da igreja"
+          ],
+          "usoHoje": [
+            "Eklesia",
+            "InPeace",
+            "Nenhum"
+          ],
+          "importancia": [
+            "Essencial",
+            "Pode esperar",
+            "Não precisa"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pessoas",
+      "letra": "E",
+      "titulo": "Pessoas e acessos",
+      "subtitulo": "Quem usa e quem vê o quê",
+      "perguntas": [
+        {
+          "id": "e1",
+          "texto": "Quem cuida dos sistemas hoje? Quem cadastra membros, publica avisos e lança o financeiro? São funcionários ou voluntários?",
+          "porque": "Essas pessoas também vão usar o aplicativo, e eu quero ouvir cada uma."
+        },
+        {
+          "id": "e2",
+          "texto": "Quantas pessoas a igreja tem cadastradas hoje, mais ou menos? E quantas o senhor acha que usam o aplicativo de verdade?",
+          "porque": "O número de pessoas define o servidor e quanto ele vai custar por mês."
+        },
+        {
+          "id": "e3",
+          "texto": "Quem pode ver o quê? Por exemplo: um líder de célula pode ver o telefone dos membros da célula? A tesouraria vê as doações pelo nome?",
+          "porque": "Isso define quem vê o quê e protege os dados de todo mundo."
+        },
+        {
+          "id": "e4",
+          "texto": "Que dificuldades os irmãos mais velhos têm com o celular? Letra pequena, senha, muitos botões, internet fraca, não saber baixar o aplicativo?",
+          "porque": "Se ficar difícil para eles, não está pronto. Essa resposta vira regra para os desenhos."
+        },
+        {
+          "id": "e5",
+          "texto": "Um visitante deve conseguir usar o aplicativo sem fazer cadastro? O que ele deveria conseguir fazer na primeira vez que abrir?",
+          "porque": "Quem chega pela primeira vez precisa se sentir bem recebido também no aplicativo."
+        },
+        {
+          "id": "e6",
+          "texto": "Existem congregações, filiais ou campos missionários ligados à Missionária que também usariam o aplicativo?",
+          "porque": "Isso muda como os dados são organizados desde o começo. Mudar depois sai bem mais caro."
+        }
+      ]
+    },
+    {
+      "id": "comunicacao",
+      "letra": "F",
+      "titulo": "Comunicação",
+      "subtitulo": "Como a palavra chega até cada um",
+      "perguntas": [
+        {
+          "id": "f1",
+          "texto": "Como os avisos chegam aos membros hoje? Púlpito, telão, grupos de WhatsApp, Instagram, notificação no aplicativo? O que funciona melhor?",
+          "porque": "O aplicativo precisa somar com o que já funciona, não competir."
+        },
+        {
+          "id": "f2",
+          "texto": "O que o senhor gostaria de comunicar pelo aplicativo que hoje não consegue, ou que não chega em quem deveria?",
+          "porque": "Normalmente é aqui que aparece o que nenhum dos dois sistemas resolve."
+        },
+        {
+          "id": "f3",
+          "texto": "Pedidos de oração e de visita: como chegam hoje, quem recebe e o que acontece depois?",
+          "porque": "É cuidado pastoral. O caminho de um pedido merece o mesmo carinho de quem atende."
+        }
+      ]
+    },
+    {
+      "id": "dados",
+      "letra": "G",
+      "titulo": "Dinheiro e dados",
+      "subtitulo": "O que exige mais cuidado",
+      "perguntas": [
+        {
+          "id": "g1",
+          "texto": "Dízimos e ofertas online devem estar no aplicativo novo desde o começo? Quem cuida das finanças hoje, e o que essas pessoas precisam ver?",
+          "porque": "Pagamento exige mais segurança e mais testes. Saber isso cedo muda o cronograma."
+        },
+        {
+          "id": "g2",
+          "texto": "Os cadastros do Eklesia e do InPeace têm as mesmas pessoas, ou cada um tem a sua lista? Existem cadastros repetidos ou desatualizados?",
+          "porque": "Juntar duas listas sem perder ninguém é uma das partes mais delicadas da mudança."
+        },
+        {
+          "id": "g3",
+          "texto": "Que informações sensíveis a igreja guarda hoje? Saúde, dados de crianças, aconselhamento, doações. Quem deve ter acesso a cada uma?",
+          "porque": "A Lei Geral de Proteção de Dados exige cuidado com essas informações, e eu quero acertar isso desde o começo."
+        },
+        {
+          "id": "g4",
+          "texto": "Existe orçamento para os custos fixos de um aplicativo próprio? Os principais são a conta de desenvolvedor da Apple (US$ 99 por ano), a do Google Play (US$ 25, pagos uma vez) e o servidor.",
+          "porque": "Mesmo com a equipe toda voluntária, um aplicativo publicado tem alguns custos que não dependem da gente."
+        }
+      ]
+    },
+    {
+      "id": "prioridades",
+      "letra": "H",
+      "titulo": "Prioridades e prazos",
+      "subtitulo": "O que vem primeiro",
+      "perguntas": [
+        {
+          "id": "h1",
+          "texto": "Se a primeira versão só pudesse ter três coisas, quais seriam?",
+          "porque": "Começar pequeno e bem feito é mais seguro do que começar grande e cheio de defeito."
+        },
+        {
+          "id": "h2",
+          "texto": "Existe alguma data que importa? Um congresso, uma campanha, o fim de um contrato?",
+          "porque": "Uma data real ajuda a organizar os ciclos da equipe."
+        },
+        {
+          "id": "h3",
+          "texto": "O que o aplicativo nunca deveria fazer ou parecer? Pode ser algo que o senhor viu em outro lugar e não quer aqui.",
+          "porque": "Saber o que evitar poupa semanas de trabalho na direção errada."
+        },
+        {
+          "id": "h4",
+          "texto": "Quem, além do senhor, deve ser ouvido antes de começarmos a desenhar? Se puder, diga nomes e funções.",
+          "porque": "Quanto mais gente a gente ouvir agora, menos surpresa aparece depois."
+        },
+        {
+          "id": "h5",
+          "texto": "Quando surgir uma dúvida no meio do caminho, quem decide? O senhor prefere aprovar cada etapa ou indicar alguém para acompanhar a equipe de perto?",
+          "porque": "Durante o projeto vão surgir dúvidas toda semana, e alguém precisa responder pela igreja."
+        }
+      ]
+    },
+    {
+      "id": "conversa",
+      "letra": "I",
+      "titulo": "A conversa",
+      "subtitulo": "Uma hora pelo Google Meet",
+      "perguntas": [
+        {
+          "id": "i1",
+          "tipo": "agenda",
+          "texto": "Quais dias e horários são melhores para uma conversa de mais ou menos uma hora pelo Google Meet?",
+          "porque": "Com a resposta, eu mando o convite com o link do Meet pelo WhatsApp.",
+          "dias": [
+            "Segunda",
+            "Terça",
+            "Quarta",
+            "Quinta",
+            "Sexta",
+            "Sábado"
+          ],
+          "periodos": [
+            "Manhã",
+            "Tarde",
+            "Noite"
+          ]
+        },
+        {
+          "id": "i2",
+          "tipo": "escolha",
+          "texto": "Podemos gravar a conversa?",
+          "porque": "A gravação fica só com a equipe. Serve para não perder nenhum detalhe do que o senhor disser e para voltar nela quando surgir dúvida.",
+          "opcoes": [
+            "Sim, podem gravar",
+            "Prefiro conversar sobre isso antes"
+          ]
+        },
+        {
+          "id": "i3",
+          "texto": "Tem alguma coisa que não perguntamos e que o senhor gostaria de dizer?",
+          "porque": "Às vezes a informação mais importante vem de uma pergunta que eu não fiz."
+        }
+      ]
+    }
+  ]
+}

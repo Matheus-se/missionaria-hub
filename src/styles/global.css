@@ -1,0 +1,299 @@
+@font-face {
+  font-family: 'Prata';
+  src: url('/fonts/prata.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Catamaran';
+  src: url('/fonts/catamaran.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'League Spartan';
+  src: url('/fonts/league-spartan.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --paper: #f8f8f8;
+  --ink: #080808;
+  --ink-soft: #3a3a3a;
+  --rule: rgb(8 8 8 / 0.16);
+  --rule-claro: rgb(248 248 248 / 0.28);
+
+  --serif: 'Prata', 'Times New Roman', serif;
+  --sans: 'Catamaran', 'Helvetica Neue', Arial, sans-serif;
+  --brand: 'League Spartan', 'Helvetica Neue', Arial, sans-serif;
+
+  /* 1 comp pixel at the 1280 px reference frame */
+  --u: calc(100vw / 1280);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+a {
+  color: inherit;
+}
+
+p,
+li,
+dd,
+figcaption {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Sistema das seções ---------- */
+
+:root {
+  --m: clamp(20px, 5vw, 96px);
+  --g: clamp(16px, 1.875vw, 32px);
+
+  --t-mega: clamp(64px, 10.5vw, 200px);
+  --t-xl: clamp(42px, 5.9vw, 112px);
+  --t-l: clamp(30px, 3.6vw, 64px);
+  --t-m: clamp(23px, 2.1vw, 36px);
+  --t-body: clamp(18px, 1.5625vw, 23px);
+  --t-small: clamp(15px, 1.17vw, 17px);
+  --t-label: clamp(12px, 0.94vw, 14px);
+
+  /* Escala de espaçamento: 8 · 16 · 24 · 32 · 48 · 64 · 96 · 128 (valores cheios a partir de 1440 px) */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: clamp(16px, 1.667vw, 24px);
+  --s-4: clamp(24px, 2.222vw, 32px);
+  --s-5: clamp(32px, 3.333vw, 48px);
+  --s-6: clamp(40px, 4.444vw, 64px);
+  --s-7: clamp(56px, 6.667vw, 96px);
+  --s-8: clamp(80px, 8.889vw, 128px);
+
+  --respiro: var(--s-8);
+}
+
+.secao {
+  position: relative;
+  padding: var(--respiro) var(--m);
+}
+
+/* Duas seções claras seguidas dividem um único respiro. */
+.secao:not(.secao--preta) + .secao:not(.secao--preta) {
+  padding-top: 0;
+}
+
+.secao--preta {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.secao--preta ::selection {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.grade {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--g);
+}
+
+.titulo-secao {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-xl);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.rotulo {
+  font-family: var(--brand);
+  font-weight: 500;
+  font-size: var(--t-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+
+.texto {
+  font-size: var(--t-body);
+  line-height: 1.6;
+  max-width: 34em;
+  text-wrap: pretty;
+}
+
+.texto p {
+  margin: 0 0 1em;
+}
+
+/* Máscara das linhas reveladas: folga para acentos e descendentes. */
+.linha-revelada {
+  padding-block: 0.1em 0.18em;
+  margin-block: -0.1em -0.18em;
+}
+
+.texto p:last-child {
+  margin-bottom: 0;
+}
+
+.citacao {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-l);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+@media (max-width: 860px) {
+  .grade {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Botões e opções ---------- */
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 52px;
+  padding: 0 1.5em;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: clamp(17px, 1.3vw, 20px);
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.22s var(--ease-out),
+    color 0.22s var(--ease-out);
+}
+
+.botao:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.botao--linha {
+  background: transparent;
+  color: var(--ink);
+}
+
+.botao--linha:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.botao:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.secao--preta .botao {
+  border-color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.secao--preta .botao:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.secao--preta .botao--linha {
+  background: transparent;
+  color: var(--paper);
+}
+
+.secao--preta .botao--linha:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.opcao {
+  min-height: 44px;
+  padding: 0 1em;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.18s var(--ease-out),
+    color 0.18s var(--ease-out),
+    box-shadow 0.18s var(--ease-out);
+}
+
+.opcao:hover {
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.opcao[aria-pressed='true'],
+.opcao[aria-checked='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}

@@ -1,0 +1,153 @@
+{
+  "regions": [
+    {
+      "id": "masthead-mark",
+      "kind": "chrome",
+      "pixelBox": {
+        "x": 60,
+        "y": 18,
+        "w": 46,
+        "h": 56
+      },
+      "note": "small flat black Missionária symbol at the left of the masthead"
+    },
+    {
+      "id": "masthead-name",
+      "kind": "text",
+      "pixelBox": {
+        "x": 113,
+        "y": 34,
+        "w": 187,
+        "h": 24
+      },
+      "note": "MISSIONÁRIA HUB set in wide black caps, the product name"
+    },
+    {
+      "id": "nav-vimos",
+      "kind": "control",
+      "pixelBox": {
+        "x": 378,
+        "y": 37,
+        "w": 90,
+        "h": 23
+      },
+      "note": "navigation link O que vimos in small black grotesk"
+    },
+    {
+      "id": "nav-funciona",
+      "kind": "control",
+      "pixelBox": {
+        "x": 496,
+        "y": 37,
+        "w": 109,
+        "h": 23
+      },
+      "note": "navigation link Como funciona in small black grotesk"
+    },
+    {
+      "id": "nav-perguntas",
+      "kind": "control",
+      "pixelBox": {
+        "x": 635,
+        "y": 37,
+        "w": 74,
+        "h": 23
+      },
+      "note": "navigation link Perguntas in small black grotesk"
+    },
+    {
+      "id": "nav-conversa",
+      "kind": "control",
+      "pixelBox": {
+        "x": 737,
+        "y": 37,
+        "w": 70,
+        "h": 23
+      },
+      "note": "navigation link Conversa in small black grotesk"
+    },
+    {
+      "id": "headline",
+      "kind": "text",
+      "pixelBox": {
+        "x": 64,
+        "y": 203,
+        "w": 680,
+        "h": 224
+      },
+      "note": "three-line didone headline: Pastor, antes de começar o aplicativo, a gente precisa ouvir o senhor."
+    },
+    {
+      "id": "subline",
+      "kind": "text",
+      "pixelBox": {
+        "x": 66,
+        "y": 446,
+        "w": 646,
+        "h": 28
+      },
+      "note": "one plain grotesk line: São 37 perguntas, uns 45 minutos. Dá para parar e continuar depois."
+    },
+    {
+      "id": "cta",
+      "kind": "control",
+      "pixelBox": {
+        "x": 66,
+        "y": 506,
+        "w": 260,
+        "h": 68
+      },
+      "note": "solid black button with white label Começar as perguntas"
+    },
+    {
+      "id": "faixa-preta",
+      "kind": "chrome",
+      "pixelBox": {
+        "x": 0,
+        "y": 656,
+        "w": 1252,
+        "h": 64
+      },
+      "note": "top edge of the next full-bleed black section; the box stops at x 1252 to leave out the image generator watermark in the bottom-right corner (comp defect)"
+    },
+    {
+      "id": "simbolo-losango",
+      "kind": "chrome",
+      "codeDrawn": true,
+      "pixelBox": {
+        "x": 1024,
+        "y": 36,
+        "w": 108,
+        "h": 108
+      },
+      "note": "diamond, top piece of the official Missionária logo symbol, a solid flat black shape set in the SVG logo; moves on its own in the signature interaction"
+    },
+    {
+      "id": "simbolo-chevron",
+      "kind": "chrome",
+      "codeDrawn": true,
+      "pixelBox": {
+        "x": 922,
+        "y": 139,
+        "w": 312,
+        "h": 208
+      },
+      "note": "chevron, middle piece of the official Missionária logo symbol, a solid flat black shape set in the SVG logo; moves on its own in the signature interaction"
+    },
+    {
+      "id": "simbolo-coracao",
+      "kind": "chrome",
+      "codeDrawn": true,
+      "pixelBox": {
+        "x": 843,
+        "y": 245,
+        "w": 437,
+        "h": 398
+      },
+      "bleed": true,
+      "note": "heart, bottom piece of the official Missionária logo symbol, a solid flat black shape set in the SVG logo, cropped by the right edge; moves on its own in the signature interaction"
+    }
+  ],
+  "allowUncovered": true,
+  "uncoveredNote": "Confirmed: C0-F0 and A6-A7 hold only the 1 px frame line the image model drew at y=0 and x=0; G3 and G5 hold faint generation mottling on the white ground. Comp defects, not page elements."
+}

@@ -1,0 +1,76 @@
+---
+/**
+ * O símbolo da Missionária no estado de uma etapa da obra.
+ * Cada peça pode estar como fantasma (tracejada), traço (contorno) ou cheia.
+ */
+type Estado = 'fantasma' | 'traco' | 'cheio';
+
+interface Props {
+  etapa: number;
+  class?: string;
+}
+
+const { etapa, class: className } = Astro.props;
+
+const estados: Record<number, [Estado, Estado, Estado]> = {
+  0: ['fantasma', 'fantasma', 'fantasma'],
+  1: ['cheio', 'fantasma', 'fantasma'],
+  2: ['cheio', 'traco', 'traco'],
+  3: ['cheio', 'cheio', 'traco'],
+  4: ['cheio', 'cheio', 'cheio'],
+  5: ['cheio', 'cheio', 'cheio'],
+  6: ['cheio', 'cheio', 'cheio'],
+};
+
+const [losango, chevron, coracao] = estados[etapa] ?? estados[6];
+---
+
+<svg class:list={['simbolo-etapa', className]} viewBox="-280 148 560 728" aria-hidden="true" focusable="false">
+  <path class:list={['peca', losango]} data-peca="losango" d="M0 154.7 58.3 213 0 271.3-58.3 213Z" />
+  <path
+    class:list={['peca', chevron]}
+    data-peca="chevron"
+    d="M-121.1 276.98 0 398.1 121.1 276.98 179.9 335.7 0 515.6-179.9 335.7Z"
+  />
+  <path
+    class:list={['peca', coracao]}
+    data-peca="coracao"
+    d="M0 869.35-213.53 655.83A203.54 203.54 0 0 1-243.75 406.55L-182.14 468.16A120.74 120.74 0 0 0-154.98 597.28L0 752.25 154.98 597.28A120.74 120.74 0 0 0 182.14 468.16L243.75 406.55A203.54 203.54 0 0 1 213.53 655.83Z"
+  />
+</svg>
+
+<style>
+  .simbolo-etapa {
+    display: block;
+    overflow: visible;
+  }
+
+  .peca {
+    stroke: currentColor;
+    stroke-width: 1.25px;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: miter;
+    transition:
+      fill-opacity 0.5s var(--ease-out),
+      stroke-opacity 0.5s var(--ease-out);
+  }
+
+  .fantasma {
+    fill: currentColor;
+    fill-opacity: 0;
+    stroke-dasharray: 4 5;
+    stroke-opacity: 0.55;
+  }
+
+  .traco {
+    fill: currentColor;
+    fill-opacity: 0;
+    stroke-opacity: 1;
+  }
+
+  .cheio {
+    fill: currentColor;
+    fill-opacity: 1;
+    stroke-opacity: 1;
+  }
+</style>

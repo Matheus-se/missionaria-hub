@@ -1,0 +1,126 @@
+---
+import Cantos from './Cantos.astro';
+import Simbolo from './Simbolo.astro';
+import { campos, totalPerguntas } from '../lib/conteudo';
+
+const envio = campos('Enviar');
+const [antes, depois] = envio['Contador'].split('{respondidas}');
+const botoes = envio['Botões'].split('·').map((b) => b.trim().replace(/\.$/, ''));
+const nota = envio['Nota'].charAt(0).toUpperCase() + envio['Nota'].slice(1);
+---
+
+<section class="secao secao--preta envio" id="enviar" aria-labelledby="envio-titulo">
+  <Cantos omitir={[4]} />
+  <div class="grade envio-grade">
+    <h2 class="titulo-secao envio-titulo" id="envio-titulo">{envio['Título']}</h2>
+    <p class="envio-contador" aria-live="polite">
+      {antes}<span class="envio-numero" data-respondidas>0</span>{
+        depois.replace('{total}', String(totalPerguntas))
+      }
+    </p>
+    <div class="envio-acoes">
+      <div class="envio-botoes">
+        <button class="botao" type="button" data-enviar="whatsapp">{botoes[0]}</button>
+        <button class="botao botao--linha" type="button" data-enviar="copiar">{botoes[1]}</button>
+        <button class="botao botao--linha" type="button" data-enviar="pdf">{botoes[2]}</button>
+        <button class="botao botao--linha" type="button" data-enviar="email">{botoes[3]}</button>
+      </div>
+      <p class="envio-nota">{nota}</p>
+      <p class="envio-retorno" data-retorno role="status"></p>
+    </div>
+  </div>
+  <Simbolo class="envio-simbolo" />
+</section>
+
+<style>
+  .envio {
+    overflow: hidden;
+  }
+
+  .envio :global(.envio-simbolo) {
+    position: absolute;
+    top: var(--respiro);
+    right: -11vw;
+    width: 54vw;
+    height: auto;
+    color: var(--paper);
+    opacity: 1;
+  }
+
+  .envio-grade {
+    position: relative;
+    row-gap: var(--s-5);
+  }
+
+  .envio-titulo,
+  .envio-contador,
+  .envio-acoes {
+    grid-column: 1 / span 7;
+  }
+
+  .envio-acoes {
+    position: relative;
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .envio-contador {
+    margin: 0;
+    font-size: var(--t-body);
+  }
+
+  .envio-numero {
+    font-family: var(--serif);
+    font-size: var(--t-xl);
+    line-height: 1;
+    margin-right: 0.12em;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .envio-botoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--s-2);
+    max-width: 620px;
+  }
+
+  .envio-retorno {
+    position: absolute;
+    top: calc(100% + var(--s-2));
+    left: 0;
+    margin: 0;
+    font-size: var(--t-body);
+  }
+
+  .envio-nota {
+    max-width: 32em;
+    margin: 0;
+    font-size: var(--t-small);
+    line-height: 1.55;
+  }
+
+  @media (max-width: 860px) {
+    .envio-titulo,
+    .envio-contador,
+    .envio-acoes {
+      grid-column: 1 / -1;
+    }
+
+    .envio {
+      padding-bottom: 0;
+    }
+
+    .envio :global(.envio-simbolo) {
+      position: relative;
+      top: auto;
+      right: auto;
+      display: block;
+      width: 78vw;
+      margin: var(--s-7) -16vw -22vw auto;
+    }
+
+    .envio-botoes {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

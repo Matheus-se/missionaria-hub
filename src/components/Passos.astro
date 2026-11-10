@@ -1,0 +1,93 @@
+---
+import { campos, lista, secao } from '../lib/conteudo';
+
+const titulo = campos('Depois disso')['Título'];
+const passos = lista(secao('Depois disso').blocos, 'ol');
+---
+
+<section class="secao passos" id="depois" aria-labelledby="passos-titulo">
+  <h2 class="titulo-secao passos-titulo" id="passos-titulo">{titulo}</h2>
+  <ol class="passos-lista">
+    {
+      passos.map((passo, i) => (
+        <li class="passo">
+          <span class="passo-numero" aria-hidden="true">
+            {i + 1}
+          </span>
+          <p>{passo}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .passos-titulo {
+    max-width: 12em;
+  }
+
+  .passos-lista {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    margin: var(--s-7) 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--ink);
+  }
+
+  .passo {
+    padding: var(--s-4) var(--s-3) 0 0;
+  }
+
+  .passo + .passo {
+    padding-left: var(--s-3);
+    border-left: 1px solid var(--ink);
+  }
+
+  .passo-numero {
+    display: block;
+    font-family: var(--serif);
+    font-size: var(--t-xl);
+    line-height: 0.9;
+  }
+
+  .passo p {
+    margin: 0.8em 0 0;
+    font-size: var(--t-body);
+    line-height: 1.5;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 1100px) {
+    .passos-lista {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: var(--s-5);
+    }
+
+    .passo:nth-child(3n + 1) {
+      padding-left: 0;
+      border-left: 0;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .passos-lista {
+      grid-template-columns: 1fr;
+      row-gap: 0;
+    }
+
+    .passo,
+    .passo + .passo {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      align-items: baseline;
+      padding: var(--s-3) 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .passo p {
+      margin: 0;
+    }
+  }
+</style>

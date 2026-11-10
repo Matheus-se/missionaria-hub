@@ -1,0 +1,88 @@
+---
+import Cantos from './Cantos.astro';
+import Simbolo from './Simbolo.astro';
+import { paragrafos, secao } from '../lib/conteudo';
+
+const todos = paragrafos(secao('Carta').blocos);
+const saudacao = todos[0].join(' ');
+const corpo = todos.slice(1, -1);
+const [despedida, ...assinatura] = todos[todos.length - 1];
+---
+
+<section class="secao secao--preta carta" id="carta" aria-labelledby="carta-titulo">
+  <Cantos />
+  <Simbolo class="carta-simbolo" />
+  <div class="grade">
+    <div class="carta-conteudo">
+      <h2 class="carta-saudacao" id="carta-titulo">{saudacao}</h2>
+      <div class="texto carta-corpo">
+        {corpo.map((linhas) => <p>{linhas.join(' ')}</p>)}
+      </div>
+      <p class="carta-despedida">{despedida}</p>
+      <p class="carta-assinatura">{assinatura.join(' ')}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carta {
+    overflow: hidden;
+  }
+
+  .carta :global(.carta-simbolo) {
+    position: absolute;
+    left: calc(var(--m) * -1 - 9vw);
+    top: var(--respiro);
+    height: calc(100% - var(--respiro) * 2);
+    width: auto;
+    color: var(--paper);
+  }
+
+  .carta-conteudo {
+    grid-column: 7 / span 6;
+  }
+
+  .carta-saudacao {
+    margin: 0 0 0.6em;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--t-xl);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .carta-corpo {
+    color: var(--paper);
+  }
+
+  .carta-despedida {
+    margin: 2.4em 0 0.2em;
+    font-size: var(--t-body);
+  }
+
+  .carta-assinatura {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: var(--t-l);
+    line-height: 1;
+  }
+
+  @media (max-width: 860px) {
+    .carta {
+      min-height: 0;
+      padding-top: calc(var(--respiro) + 52vw);
+    }
+
+    .carta :global(.carta-simbolo) {
+      left: auto;
+      right: -18vw;
+      top: -14vw;
+      height: 78vw;
+      translate: none;
+    }
+
+    .carta-conteudo {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

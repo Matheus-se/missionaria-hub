@@ -1,0 +1,276 @@
+---
+import { paragrafos, secao } from '../lib/conteudo';
+import { area, caminhoIdeal, caminhoReal, falhaIdeal, falhaReal, momentosDeMudanca, mudancasIniciais, pontoDaMudanca } from '../lib/curva';
+
+const titulo = 'Por que mudar depois sai caro';
+const ps = paragrafos(secao(titulo).blocos).map((linhas) => linhas.join(' '));
+const legenda = ps.find((p) => p.startsWith('Legenda do gráfico:'))?.replace('Legenda do gráfico:', '').trim() ?? '';
+const corpo = ps.filter((p) => !p.startsWith('Legenda do gráfico:'));
+const marca = pontoDaMudanca(0, mudancasIniciais);
+const alturaNoFim = (y: number) => area.y1 - y * (area.y1 - area.y0);
+const yIdeal = alturaNoFim(falhaIdeal(1));
+const yReal = alturaNoFim(falhaReal(1, mudancasIniciais));
+---
+
+<section class="secao curva" id="curva" aria-labelledby="curva-titulo">
+  <header class="grade curva-topo">
+    <h2 class="titulo-secao curva-titulo" id="curva-titulo">{titulo}</h2>
+    <p class="texto curva-intro">{corpo[0]}</p>
+  </header>
+
+  <figure class="grafico" data-grafico data-mudancas={mudancasIniciais} data-maximo={momentosDeMudanca.length}>
+    <div class="grafico-area">
+        <svg class="grafico-svg" viewBox="0 0 1000 560" role="img" aria-labelledby="grafico-descricao">
+          <desc id="grafico-descricao">
+            Gráfico com o índice de falhas no eixo vertical e o tempo no eixo horizontal. A curva idealizada cai e fica
+            baixa. A curva real dá um salto a cada mudança e, depois de cada salto, fica um pouco mais alta do que antes.
+          </desc>
+          <line class="eixo" x1={area.x0} y1={area.y0 - 12} x2={area.x0} y2={area.y1} />
+          <line class="eixo" x1={area.x0} y1={area.y1} x2={area.x1 + 24} y2={area.y1} />
+          <text
+            class="eixo-rotulo"
+            x={area.x0 - 30}
+            y={(area.y0 + area.y1) / 2}
+            transform={`rotate(-90 ${area.x0 - 30} ${(area.y0 + area.y1) / 2})`}
+            text-anchor="middle"
+          >
+            Índice de falhas
+          </text>
+          <text class="eixo-rotulo" x={(area.x0 + area.x1) / 2} y={area.y1 + 46} text-anchor="middle">Tempo</text>
+
+          <clipPath id="curva-tempo">
+            <rect x="0" y="0" width="1000" height="560" data-tempo />
+          </clipPath>
+          <g clip-path="url(#curva-tempo)">
+            <path class="linha-ideal" d={caminhoIdeal()} data-ideal />
+            <path class="linha-real" d={caminhoReal(mudancasIniciais)} data-real />
+            <circle class="marca-mudanca" cx={marca.x} cy={marca.y} r="7" data-marca />
+          </g>
+          <text class="anotacao anotacao-fim" x={marca.x - 16} y={marca.y - 46} text-anchor="end" data-marca-texto data-revelar-em={marca.x}>Mudança</text>
+          <text class="anotacao anotacao-fim" x={area.x1} y={yReal - 16} text-anchor="end" data-rotulo-real data-revelar-em={area.x1}>Curva real</text>
+          <text class="anotacao anotacao-fim" x={area.x1} y={yIdeal + 21} text-anchor="end" data-revelar-em={area.x1}>Curva idealizada</text>
+        </svg>
+        <ul class="grafico-chave" aria-hidden="true">
+          <li><span class="chave-real"></span>Curva real</li>
+          <li><span class="chave-ideal"></span>Curva idealizada</li>
+          <li><span class="chave-mudanca"></span>Mudança</li>
+        </ul>
+    </div>
+
+      <div class="grafico-lado">
+        <p class="grafico-contagem" aria-live="polite">
+          <span data-contagem>{mudancasIniciais}</span>
+          <span data-contagem-rotulo>mudanças com o aplicativo pronto</span>
+        </p>
+        <div class="grafico-botoes">
+          <button class="botao" type="button" data-mudar>Fazer mais uma mudança</button>
+          <button class="botao botao--linha" type="button" data-zerar>Voltar ao começo</button>
+        </div>
+        <p class="texto grafico-explicacao">{corpo[1]}</p>
+      </div>
+    <figcaption class="grafico-legenda">{legenda}</figcaption>
+  </figure>
+
+  <p class="citacao curva-conclusao">{corpo[2]}</p>
+</section>
+
+<style>
+  .curva-topo {
+    row-gap: var(--s-4);
+    align-items: end;
+  }
+
+  .curva-titulo {
+    grid-column: 1 / span 7;
+    align-self: start;
+  }
+
+  .curva-intro {
+    grid-column: 9 / span 4;
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .grafico {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    grid-template-rows: auto 1fr;
+    column-gap: var(--s-6);
+    align-items: start;
+    margin: var(--s-7) 0 0;
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--ink);
+  }
+
+  .grafico-area {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .grafico-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .grafico-lado {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    display: grid;
+    gap: var(--s-4);
+    padding-left: var(--s-5);
+    border-left: 1px solid var(--ink);
+  }
+
+  .grafico-contagem {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-2);
+    margin: 0;
+    font-size: var(--t-body);
+    line-height: 1.3;
+  }
+
+  .grafico-contagem [data-contagem] {
+    font-family: var(--serif);
+    font-size: var(--t-xl);
+    line-height: 0.9;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .grafico-botoes {
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .grafico-explicacao {
+    margin: 0;
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--rule);
+  }
+
+  .eixo {
+    stroke: var(--ink);
+    stroke-width: 1.5;
+  }
+
+  .eixo-rotulo,
+  .anotacao {
+    font-family: var(--sans);
+    font-size: 21px;
+    fill: var(--ink);
+  }
+
+  .anotacao {
+    transition: opacity 0.45s var(--ease-out);
+  }
+
+  .linha-ideal,
+  .linha-real {
+    fill: none;
+    stroke: var(--ink);
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  .linha-ideal {
+    stroke-width: 2.2;
+    stroke-dasharray: 2 7;
+  }
+
+  .linha-real {
+    stroke-width: 3.2;
+  }
+
+  .marca-mudanca {
+    fill: var(--ink);
+  }
+
+  .grafico-chave {
+    display: none;
+  }
+
+  .grafico-legenda {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: var(--s-3);
+    font-size: var(--t-small);
+    color: var(--ink-soft);
+  }
+
+  .curva-conclusao {
+    max-width: 16em;
+    margin-top: var(--s-6);
+  }
+
+  @media (max-width: 860px) {
+    .curva-titulo,
+    .curva-intro {
+      grid-column: 1 / -1;
+    }
+
+    .grafico {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: none;
+    }
+
+    .grafico-lado {
+      grid-column: 1;
+      grid-row: 3;
+      margin-top: var(--s-5);
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .eixo-rotulo {
+      font-size: 40px;
+    }
+
+    .anotacao-fim {
+      display: none;
+    }
+
+    .grafico-chave {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--s-1) var(--s-3);
+      margin: var(--s-3) 0 0;
+      padding: 0;
+      list-style: none;
+      font-size: var(--t-small);
+    }
+
+    .grafico-chave li {
+      display: flex;
+      align-items: center;
+      gap: var(--s-1);
+    }
+
+    .chave-real {
+      width: 26px;
+      border-top: 2.5px solid var(--ink);
+    }
+
+    .chave-ideal {
+      width: 26px;
+      border-top: 2px dotted var(--ink);
+    }
+
+    .chave-mudanca {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .linha-real {
+      stroke-width: 5;
+    }
+
+    .linha-ideal {
+      stroke-width: 3.5;
+      stroke-dasharray: 3 10;
+    }
+  }
+</style>

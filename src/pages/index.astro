@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import BarraFixa from '../components/BarraFixa.astro';
+import Hero from '../components/Hero.astro';
+import Carta from '../components/Carta.astro';
+import Estudo from '../components/Estudo.astro';
+import Processo from '../components/Processo.astro';
+import Equipe from '../components/Equipe.astro';
+import Curva from '../components/Curva.astro';
+import Questionario from '../components/Questionario.astro';
+import Envio from '../components/Envio.astro';
+import Passos from '../components/Passos.astro';
+import Fecho from '../components/Fecho.astro';
+import Relatorio from '../components/Relatorio.astro';
+import SoComputador from '../components/SoComputador.astro';
+import { partes } from '../lib/conteudo';
+import { contato } from '../lib/config';
+
+const dados = JSON.stringify({ partes, contato });
+---
+
+<Base
+  title="Missionária HUB · Antes de começar o aplicativo"
+  description="Perguntas para o Pr. Jacó Junior antes de começarmos o aplicativo da Igreja Missionária Central de Maringá."
+>
+  <SoComputador />
+  <BarraFixa />
+  <main id="topo">
+    <Hero />
+    <Carta />
+    <Estudo />
+    <Processo />
+    <Equipe />
+    <Curva />
+    <Questionario />
+    <Envio />
+    <Passos />
+  </main>
+  <Fecho />
+  <Relatorio />
+  <script type="application/json" id="dados-perguntas" set:html={dados} />
+</Base>
+
+<script>
+  import '../scripts/movimento';
+  import '../scripts/respostas';
+  import '../scripts/partes';
+  import '../scripts/curva';
+</script>

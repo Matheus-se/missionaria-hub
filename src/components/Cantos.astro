@@ -1,0 +1,74 @@
+---
+interface Props {
+  /** "dentro": recuadas da borda da seção. "vertice": centradas nos cantos da moldura. */
+  posicao?: 'dentro' | 'vertice';
+  /** Cantos a omitir: 1 sup. esquerdo, 2 sup. direito, 3 inf. esquerdo, 4 inf. direito. */
+  omitir?: number[];
+}
+
+const { posicao = 'dentro', omitir = [] } = Astro.props;
+---
+
+<span class:list={['cantos', `cantos--${posicao}`]} aria-hidden="true">
+  {[1, 2, 3, 4].map((canto) => (omitir.includes(canto) ? null : <i data-canto={canto} />))}
+</span>
+
+<style is:global>
+  .cantos {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .cantos--dentro {
+    inset: clamp(14px, 1.5vw, 26px);
+  }
+
+  .cantos--vertice {
+    inset: 0;
+  }
+
+  .cantos i {
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    background: currentColor;
+    rotate: 45deg;
+  }
+
+  .cantos i[data-canto='1'] {
+    top: 0;
+    left: 0;
+  }
+
+  .cantos i[data-canto='2'] {
+    top: 0;
+    right: 0;
+  }
+
+  .cantos i[data-canto='3'] {
+    bottom: 0;
+    left: 0;
+  }
+
+  .cantos i[data-canto='4'] {
+    bottom: 0;
+    right: 0;
+  }
+
+  .cantos--vertice i[data-canto='1'] {
+    translate: -50% -50%;
+  }
+
+  .cantos--vertice i[data-canto='2'] {
+    translate: 50% -50%;
+  }
+
+  .cantos--vertice i[data-canto='3'] {
+    translate: -50% 50%;
+  }
+
+  .cantos--vertice i[data-canto='4'] {
+    translate: 50% 50%;
+  }
+</style>

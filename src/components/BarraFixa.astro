@@ -1,0 +1,163 @@
+---
+import Simbolo from './Simbolo.astro';
+import { totalPerguntas } from '../lib/conteudo';
+---
+
+<div class="barra" data-barra aria-hidden="true" inert>
+  <a class="barra-marca" href="#topo" tabindex="-1">
+    <Simbolo class="barra-simbolo" />
+    <span>MISSIONÁRIA HUB</span>
+  </a>
+  <nav class="barra-menu">
+    <a href="#o-que-vimos" tabindex="-1">O que vimos</a>
+    <a href="#como-funciona" tabindex="-1">Como funciona</a>
+    <a href="#perguntas" tabindex="-1">Perguntas</a>
+    <a href="#parte-conversa" tabindex="-1">Conversa</a>
+    <a href="#enviar" tabindex="-1">Enviar</a>
+  </nav>
+  <p class="barra-progresso"><span data-respondidas>0</span>/{totalPerguntas}</p>
+</div>
+
+<script>
+  const barra = document.querySelector<HTMLElement>('[data-barra]');
+  const abertura = document.querySelector('.abertura');
+  if (barra && abertura) {
+    new IntersectionObserver(
+      ([entrada]) => {
+        const visivel = !entrada.isIntersecting;
+        barra.classList.toggle('visivel', visivel);
+        barra.toggleAttribute('inert', !visivel);
+        barra.setAttribute('aria-hidden', String(!visivel));
+        barra.querySelectorAll('a').forEach((a) => (a.tabIndex = visivel ? 0 : -1));
+      },
+      { rootMargin: '-80px 0px 0px 0px' },
+    ).observe(abertura);
+
+    const escuras = [...document.querySelectorAll('.secao--preta')];
+    const atualizarTema = () => {
+      const linha = barra.offsetHeight / 2;
+      const sobEscura = escuras.some((secao) => {
+        const caixa = secao.getBoundingClientRect();
+        return caixa.top <= linha && caixa.bottom >= linha;
+      });
+      barra.dataset.tema = sobEscura ? 'escuro' : 'claro';
+    };
+    let agendado = false;
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (agendado) return;
+        agendado = true;
+        requestAnimationFrame(() => {
+          atualizarTema();
+          agendado = false;
+        });
+      },
+      { passive: true },
+    );
+    const faixaDoTopo = new IntersectionObserver(atualizarTema, { rootMargin: '0px 0px -94% 0px' });
+    escuras.forEach((secao) => faixaDoTopo.observe(secao));
+    window.addEventListener('resize', atualizarTema);
+    atualizarTema();
+  }
+</script>
+
+<style>
+  .barra {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--g);
+    height: 64px;
+    padding: 0 var(--m);
+    background: var(--paper);
+    color: var(--ink);
+    box-shadow: none;
+    translate: 0 -100%;
+    transition:
+      translate 0.5s var(--ease-out),
+      background-color 0.35s var(--ease-out),
+      color 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .barra.visivel {
+    translate: 0 0;
+    pointer-events: auto;
+    box-shadow: 0 1px 0 var(--ink);
+  }
+
+  .barra.visivel[data-tema='escuro'] {
+    background: var(--ink);
+    color: var(--paper);
+    box-shadow: 0 1px 0 var(--rule-claro);
+  }
+
+  .barra-marca {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-family: var(--brand);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.07em;
+    text-decoration: none;
+  }
+
+  .barra-marca :global(.barra-simbolo) {
+    height: 30px;
+    width: auto;
+  }
+
+  .barra-menu {
+    display: flex;
+    justify-content: center;
+    gap: var(--s-4);
+    font-size: 16px;
+  }
+
+  .barra-menu a {
+    text-decoration: none;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.35s var(--ease-out);
+  }
+
+  .barra-menu a:hover {
+    background-size: 100% 1px;
+  }
+
+  .barra-progresso {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 20px;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .barra {
+      transition:
+        background-color 0.2s linear,
+        color 0.2s linear;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .barra {
+      grid-template-columns: 1fr auto;
+      height: 56px;
+    }
+
+    .barra-menu {
+      display: none;
+    }
+
+    .barra-marca span {
+      font-size: 12px;
+    }
+  }
+</style>
